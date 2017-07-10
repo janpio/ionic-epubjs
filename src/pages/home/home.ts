@@ -17,18 +17,20 @@ export class HomePage {
       this.book.renderTo("area");
 
       // TODO What does this do?
-      this.book.ready.all.then(()=>{
-        console.log('ready');
+      this.book.ready.all.then(foo => {
+        console.log('ready', foo);
         this.book.generatePagination();
       });
 
       // TODO What does this do?
-      this.book.pageListReady.then(function (pageList) {
+      this.book.pageListReady.then(pageList => {
+        console.log('pageList', pageList);
         alert("_pages" + this.book.pagination.totalPages);
       });
 
       // TODO What does this do?
-      this.book.on('book:pageChanged', function (location) {
+      this.book.on('book:pageChanged', (location) => {
+        console.log('location', location);
         var currentLocation = this.book.getCurrentLocationCfi();
         var currentPage = this.book.pagination.pageFromCfi(currentLocation);
         alert("_current" + currentPage);
