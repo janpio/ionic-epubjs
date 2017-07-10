@@ -1,16 +1,26 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Ionic EPUB Reader</ion-title>
+  </ion-toolbar>
+  </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-footer>
+    <ion-toolbar color="primary">
+      <ion-buttons start>
+        <button ion-button icon-only (tap)="prev()">
+        <ion-icon name="arrow-dropleft-circle" ></ion-icon>
+      </button>
+      </ion-buttons>
 
-  <div id="area"></div>
-</ion-content>
+      <ion-buttons end>
+        <button ion-button icon-only (tap)="next()">
+        <ion-icon name="arrow-dropright-circle" ></ion-icon>
+      </button>
+      </ion-buttons>
+
+    </ion-toolbar>
+  </ion-footer>
+
+  <ion-content padding>
+    <div id="area"></div>
+  </ion-content>
