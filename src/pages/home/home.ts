@@ -10,26 +10,31 @@ declare var ePub: any;
 export class HomePage {
 
   book: any;
+
   constructor(public navCtrl: NavController, public platform: Platform) {
     this.platform.ready().then(() => {
       this.book = ePub("assets/books/moby-dick/");
       this.book.renderTo("area");
-      this.book.ready.then(()=>{
+
+      // TODO What does this do?
+      this.book.ready.all.then(()=>{
         console.log('ready');
         this.book.generatePagination();
       });
 
+      // TODO What does this do?
       this.book.pageListReady.then(function (pageList) {
-    alert("_pages" + this.book.pagination.totalPages);
-});
+        alert("_pages" + this.book.pagination.totalPages);
+      });
 
-this.book.on('book:pageChanged', function (location) {
-    var currentLocation = this.book.getCurrentLocationCfi();
-    var currentPage = this.book.pagination.pageFromCfi(currentLocation);
-    alert("_current" + currentPage);
-    var page = this.book.pageList[currentPage-1];
-    alert("_bookmark" + page.cfi);
-});
+      // TODO What does this do?
+      this.book.on('book:pageChanged', function (location) {
+        var currentLocation = this.book.getCurrentLocationCfi();
+        var currentPage = this.book.pagination.pageFromCfi(currentLocation);
+        alert("_current" + currentPage);
+        var page = this.book.pageList[currentPage-1];
+        alert("_bookmark" + page.cfi);
+      });
 
     });
   }
