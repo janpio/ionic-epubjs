@@ -8,7 +8,6 @@ declare var ePub: any;
   templateUrl: 'home.html'
 })
 export class HomePage {
-  test: any;
   book: any;
   currentPage: any = 1;
   totalPages: any;
