@@ -8,44 +8,43 @@ declare var ePub: any;
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+  test: any;
   book: any;
-
+  currentPage: any = 1;
+  totalPages: any;
   constructor(public navCtrl: NavController, public platform: Platform) {
     this.platform.ready().then(() => {
+
       this.book = ePub("assets/books/moby-dick/");
+
       this.book.renderTo("area");
 
-      // TODO What does this do?
       this.book.ready.all.then(foo => {
-        console.log('ready', foo);
-        this.book.generatePagination();
-      });
-
-      // TODO What does this do?
-      this.book.pageListReady.then(pageList => {
-        console.log('pageList', pageList);
-        alert("_pages" + this.book.pagination.totalPages);
-      });
-
-      // TODO What does this do?
-      this.book.on('book:pageChanged', (location) => {
-        console.log('location', location);
-        var currentLocation = this.book.getCurrentLocationCfi();
-        var currentPage = this.book.pagination.pageFromCfi(currentLocation);
-        alert("_current" + currentPage);
-        var page = this.book.pageList[currentPage-1];
-        alert("_bookmark" + page.cfi);
+        this.book.generatePagination().then(() => {
+          this.totalPages = `of ${this.book.pagination.totalPages}`;
+        });
       });
 
     });
   }
 
-  prev(){
-    this.book.prevPage();
+  prev() {
+    if (this.currentPage == 2) {
+      this.book.gotoPage(1).then(()=>{
+        this.currentPage--;
+      });
+    }
+    else {
+      this.book.prevPage().then(()=>{
+        this.currentPage--;
+      });
+    }
   }
 
-  next(){
-    this.book.nextPage();
+  next() {
+    this.book.nextPage().then(()=>{
+        this.currentPage++;
+      });
   }
+
 }

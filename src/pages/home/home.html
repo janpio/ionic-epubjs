@@ -11,7 +11,7 @@
         <ion-icon name="arrow-dropleft-circle" ></ion-icon>
       </button>
       </ion-buttons>
-
+      <ion-title>Page {{currentPage}} {{totalPages}}</ion-title>
       <ion-buttons end>
         <button ion-button icon-only (tap)="next()">
         <ion-icon name="arrow-dropright-circle" ></ion-icon>
@@ -22,5 +22,6 @@
   </ion-footer>
 
   <ion-content padding>
-    <div id="area"></div>
+    <div id="area" (swipe)="swipe($event)"></div>
+    <p>{{test}}</p>
   </ion-content>
