@@ -1,26 +1,33 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Ionic EPUB Reader</ion-title>
+  <ion-toolbar color="primary" >
+    <!--<ion-title *ngIf="!book">Ionic epubjs</ion-title>
+    <ion-title *ngIf="book && book.metadata && !currentChapter">{{book.metadata.bookTitle}}</ion-title>-->
+    <ion-title>{{currentChapter}}</ion-title>
+    <ion-buttons start>
+      <button ion-button icon-only (tap)="toc($event)">
+        <ion-icon name="menu" ></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-toolbar>
-  </ion-header>
+</ion-header>
 
-  <ion-footer>
-    <ion-toolbar color="primary">
-      <ion-buttons start>
-        <button ion-button icon-only (tap)="prev()">
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <button ion-button icon-only (tap)="prev()">
         <ion-icon name="arrow-dropleft-circle" ></ion-icon>
       </button>
-      </ion-buttons>
-
-      <ion-buttons end>
-        <button ion-button icon-only (tap)="next()">
+    </ion-buttons>
+    <ion-title>Page {{currentPage}} {{totalPages}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (tap)="next()">
         <ion-icon name="arrow-dropright-circle" ></ion-icon>
       </button>
-      </ion-buttons>
+    </ion-buttons>
 
-    </ion-toolbar>
-  </ion-footer>
+  </ion-toolbar>
+</ion-footer>
 
-  <ion-content padding>
-    <div id="area"></div>
-  </ion-content>
+<ion-content padding>
+  <div id="area"></div>
+</ion-content>
