@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, Platform, PopoverController, Events } from 'ionic-angular';
 import { TocPage } from '../toc/toc';
+import { SettingsPage } from '../settings/settings';
 
 declare var ePub: any;
 
@@ -67,6 +68,13 @@ export class HomePage {
   toc(ev) {
     let popover = this.popoverCtrl.create(TocPage, {
       toc: this.book.toc
+    });
+    popover.present({ ev });
+  }
+
+  settings(ev) {
+    let popover = this.popoverCtrl.create(SettingsPage, {
+      book: this.book
     });
     popover.present({ ev });
   }
