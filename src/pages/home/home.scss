@@ -10,6 +10,10 @@ page-home {
         position: absolute
     }
 
+    #area {
+        z-index: 0;
+    }
+
     #area iframe {
         border: none;
     }

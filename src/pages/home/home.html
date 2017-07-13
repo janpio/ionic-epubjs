@@ -17,6 +17,7 @@
 </ion-header>
 
 <ion-content no-bounce>
+  <div id="container" (tap)="toggleToolbars()" (swipe)="changePage($event)"></div>
   <div id="area"></div>
 </ion-content>
 
