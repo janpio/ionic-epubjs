@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 
 /**
  * Generated class for the SettingsPage page.
@@ -14,18 +14,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SettingsPage {
 
-  book: any;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    if (this.navParams.data) {
-      this.book = this.navParams.data.book;
-
-      this.setBackground();
-      this.setFontFamily();
-    }
-  }
-
   background: string;
+  fontSize: any;
   fontFamily;
 
   colors = {
@@ -47,6 +37,20 @@ export class SettingsPage {
     },
   };
 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events) {
+    if (this.navParams.data) {
+      this.background = this.getColorName(this.navParams.data.backgroundColor);
+      this.fontSize = this.navParams.data.fontSize;
+      if (this.navParams.data.fontFamily) {
+        this.fontFamily = this.navParams.data.fontFamily.replace(/'/g, "");
+      }
+      else {
+        //TODO get the default font-family
+      }
+    }
+  }
+
+
   getColorName(background) {
     let colorName = 'white';
 
@@ -61,40 +65,27 @@ export class SettingsPage {
     return colorName;
   }
 
-  setFontFamily() {
-    if (this.book.settings.styles['font-family']) {
-      this.fontFamily = this.book.settings.styles['font-family'].replace(/'/g, "");
-    }
-    else{
-      //TODO get the default font-family
-    }
-  }
-
-  setBackground() {
-      this.background = this.getColorName(this.book.settings.styles['background-color']);
-  }
-
   changeBackground(color) {
     this.background = color;
-    this.book.setStyle("background-color", this.colors[color].bg);
-    this.book.setStyle("color", this.colors[color].fg);
+    this.events.publish('select:background-color', this.colors[color].bg);
+    this.events.publish('select:color', this.colors[color].fg);
   }
 
   changeFontSize(direction) {
-    let size = this.book.settings.styles['font-size'] ? this.book.settings.styles['font-size'] : '1em';
+    let size = this.fontSize ? this.fontSize : '1em';
     let sizeValue = +size.replace('em', '');
-    let newSizeValue = direction == 'larger' ? sizeValue+=0.1 : sizeValue-=0.1;
-    if(newSizeValue >= 0.4 && newSizeValue <= 2){
-      this.book.setStyle("font-size", `${newSizeValue}em`);
-      this.book.generatePagination();
+    let newSizeValue = direction == 'larger' ? sizeValue += 0.1 : sizeValue -= 0.1;
+    if (newSizeValue >= 0.4 && newSizeValue <= 2) {
+      this.fontSize = `${newSizeValue}em`;
+      this.events.publish('select:font-size', this.fontSize);
     }
   }
 
   changeFontFamily() {
-    if (this.fontFamily){
-      this.book.setStyle("font-family", this.fontFamily);
-    } 
-      
+    if (this.fontFamily) {
+      this.events.publish('select:font-family', this.fontFamily);
+    }
+
   }
 
 }
