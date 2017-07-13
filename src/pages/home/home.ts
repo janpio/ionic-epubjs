@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, Platform, PopoverController, Events } from 'ionic-angular';
 import { TocPage } from '../toc/toc';
+import { SettingsPage } from '../settings/settings';
 
 declare var ePub: any;
 
@@ -13,7 +14,8 @@ export class HomePage {
   currentPage: any = 1;
   currentChapter: any;
   totalPages: any;
-
+  showToolbars: boolean = true;
+  
   constructor(public navCtrl: NavController, public platform: Platform, public popoverCtrl: PopoverController, public events: Events) {
     this.platform.ready().then(() => {
 
@@ -21,6 +23,22 @@ export class HomePage {
 
       this.events.subscribe('select:toc', (content) => {
         this.book.goto(content.href);
+      });
+
+      this.events.subscribe('select:background-color', (color) => {
+        this.book.setStyle("background-color", color);
+      });
+
+      this.events.subscribe('select:color', (color) => {
+        this.book.setStyle("color", color);
+      });
+
+      this.events.subscribe('select:font-family', (family) => {
+        this.book.setStyle("font-family", family);
+      });
+
+      this.events.subscribe('select:font-size', (size) => {
+        this.book.setStyle("font-size", size);
       });
 
       this.book.on('book:pageChanged', (location) => {
@@ -69,6 +87,28 @@ export class HomePage {
       toc: this.book.toc
     });
     popover.present({ ev });
+  }
+
+  settings(ev) {
+    let popover = this.popoverCtrl.create(SettingsPage, {
+      backgroundColor: this.book.settings.styles['background-color'],
+      fontFamily : this.book.settings.styles['font-family'],
+      fontSize : this.book.settings.styles['font-size'],
+    });
+    popover.present({ ev });
+  }
+
+  toggleToolbars() {
+    this.showToolbars = !this.showToolbars;
+  }
+
+  changePage(event) {
+    if (event.velocityX < 0) {
+      this.next();
+    }
+    else {
+      this.prev();
+    }
   }
 
 }

@@ -1,24 +1,34 @@
 <ion-header>
-  <ion-toolbar color="primary" >
+  <ion-toolbar *ngIf="showToolbars">
     <!--<ion-title *ngIf="!book">Ionic epubjs</ion-title>
     <ion-title *ngIf="book && book.metadata && !currentChapter">{{book.metadata.bookTitle}}</ion-title>-->
-    <ion-title>{{currentChapter}}</ion-title>
     <ion-buttons start>
       <button ion-button icon-only (tap)="toc($event)">
         <ion-icon name="menu" ></ion-icon>
       </button>
     </ion-buttons>
+    <ion-title>{{currentChapter}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (tap)="settings($event)">
+        <ion-icon name="settings" ></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
+<ion-content no-bounce>
+  <div id="container" (tap)="toggleToolbars()" (swipe)="changePage($event)"></div>
+  <div id="area"></div>
+</ion-content>
+
 <ion-footer>
-  <ion-toolbar color="primary">
+  <ion-toolbar *ngIf="showToolbars">
     <ion-buttons start>
       <button ion-button icon-only (tap)="prev()">
         <ion-icon name="arrow-dropleft-circle" ></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Page {{currentPage}} {{totalPages}}</ion-title>
+    <ion-title>Page {{currentPage}} {{(book && book.pagination && book.pagination.totalPages) ? ' of ' + book.pagination.totalPages : ''}}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (tap)="next()">
         <ion-icon name="arrow-dropright-circle" ></ion-icon>
@@ -27,7 +37,3 @@
 
   </ion-toolbar>
 </ion-footer>
-
-<ion-content padding>
-  <div id="area"></div>
-</ion-content>

@@ -1,11 +1,25 @@
 page-home {
-    #area {
-    width: 90%;
-    height: 90%;
-    margin: 5% auto;
+    #container, #area {
+    width: 100%;
+    height: 100%;
     max-width: 1250px;
     }
-    #area iframe {
-    border: none;
+
+    #container{
+        z-index: 999;
+        position: absolute
     }
+
+    #area {
+        z-index: 0;
+    }
+
+    #area iframe {
+        border: none;
+    }
+
+    .scroll-content {
+        overflow-y: hidden;
+    }
+
 }
