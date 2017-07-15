@@ -44,31 +44,38 @@ export class HomePage {
 
       this.events.subscribe('select:font-family', (family) => {
         this.book.setStyle("font-family", family);
+        this.updateTotalPages();
       });
 
       this.events.subscribe('select:font-size', (size) => {
         this.book.setStyle("font-size", size);
+        this.updateTotalPages();
       });
 
       this.book.on('book:pageChanged', (location) => {
         var currentLocation = this.book.getCurrentLocationCfi();
         this.currentPage = this.book.pagination.pageFromCfi(currentLocation);
-        this.extractCurrentChapter();
+        this.updateCurrentChapter();
       });
 
-      this.book.generatePagination().then(() => {
-        this.totalPages = `of ${this.book.pagination.totalPages}`;
-      });
+      this.updateTotalPages();
 
       this.book.getToc().then(toc => {
-        this.extractCurrentChapter();
+        this.updateCurrentChapter();
       });
 
       this.book.renderTo("area");
     });
   }
 
-  extractCurrentChapter() {
+  updateTotalPages(){
+      //TODO: cancel prior pagination promise
+      this.book.generatePagination().then(() => {
+        this.totalPages = `of ${this.book.pagination.totalPages}`;
+      });
+  }
+
+  updateCurrentChapter() {
     if (this.book.toc) {
       let chapter = this.book.toc.filter(obj => obj.href == this.book.currentChapter.href)[0];
       this.currentChapter = chapter ? chapter.label : this.book.metadata.bookTitle;
