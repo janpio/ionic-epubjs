@@ -15,7 +15,9 @@ export class HomePage {
   currentChapter: any;
   totalPages: any;
   showToolbars: boolean = true;
-  
+  bgColor: any;
+  toolbarColor: string = 'light';
+
   constructor(public navCtrl: NavController, public platform: Platform, public popoverCtrl: PopoverController, public events: Events) {
     this.platform.ready().then(() => {
 
@@ -27,6 +29,13 @@ export class HomePage {
 
       this.events.subscribe('select:background-color', (color) => {
         this.book.setStyle("background-color", color);
+        this.bgColor = color;
+        if (color == 'rgb(255, 255, 255)' || color == 'rgb(249, 241, 228)') {
+          this.toolbarColor = 'light';
+        }
+        else {
+          this.toolbarColor = 'dark';
+        }
       });
 
       this.events.subscribe('select:color', (color) => {
@@ -92,8 +101,8 @@ export class HomePage {
   settings(ev) {
     let popover = this.popoverCtrl.create(SettingsPage, {
       backgroundColor: this.book.settings.styles['background-color'],
-      fontFamily : this.book.settings.styles['font-family'],
-      fontSize : this.book.settings.styles['font-size'],
+      fontFamily: this.book.settings.styles['font-family'],
+      fontSize: this.book.settings.styles['font-size'],
     });
     popover.present({ ev });
   }
