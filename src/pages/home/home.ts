@@ -19,7 +19,7 @@ export class HomePage {
   constructor(public navCtrl: NavController, public platform: Platform, public popoverCtrl: PopoverController, public events: Events) {
     this.platform.ready().then(() => {
 
-      this.book = ePub("assets/books/moby-dick/");
+      this.book = ePub("assets/books/epub/complete.epub");
 
       this.events.subscribe('select:toc', (content) => {
         this.book.goto(content.href);
