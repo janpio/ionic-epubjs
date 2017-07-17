@@ -1,7 +1,5 @@
 <ion-header>
-  <ion-toolbar *ngIf="showToolbars">
-    <!--<ion-title *ngIf="!book">Ionic epubjs</ion-title>
-    <ion-title *ngIf="book && book.metadata && !currentChapter">{{book.metadata.bookTitle}}</ion-title>-->
+  <ion-toolbar transparent [color]="toolbarColor" *ngIf="showToolbars">
     <ion-buttons start>
       <button ion-button icon-only (tap)="toc($event)">
         <ion-icon name="menu" ></ion-icon>
@@ -16,13 +14,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content no-bounce>
+<ion-content [ngStyle]="{'backgroundColor': bgColor}" no-bounce>
   <div id="container" (tap)="toggleToolbars()" (swipe)="changePage($event)"></div>
   <div id="area"></div>
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar *ngIf="showToolbars">
+  <ion-toolbar transparent [color]="toolbarColor" *ngIf="showToolbars">
     <ion-buttons start>
       <button ion-button icon-only (tap)="prev()">
         <ion-icon name="arrow-dropleft-circle" ></ion-icon>

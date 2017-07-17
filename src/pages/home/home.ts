@@ -15,7 +15,9 @@ export class HomePage {
   currentChapter: any;
   totalPages: any;
   showToolbars: boolean = true;
-  
+  bgColor: any;
+  toolbarColor: string = 'light';
+
   constructor(public navCtrl: NavController, public platform: Platform, public popoverCtrl: PopoverController, public events: Events) {
     this.platform.ready().then(() => {
 
@@ -27,6 +29,13 @@ export class HomePage {
 
       this.events.subscribe('select:background-color', (color) => {
         this.book.setStyle("background-color", color);
+        this.bgColor = color;
+        if (color == 'rgb(255, 255, 255)' || color == 'rgb(249, 241, 228)') {
+          this.toolbarColor = 'light';
+        }
+        else {
+          this.toolbarColor = 'dark';
+        }
       });
 
       this.events.subscribe('select:color', (color) => {
@@ -35,31 +44,38 @@ export class HomePage {
 
       this.events.subscribe('select:font-family', (family) => {
         this.book.setStyle("font-family", family);
+        this.updateTotalPages();
       });
 
       this.events.subscribe('select:font-size', (size) => {
         this.book.setStyle("font-size", size);
+        this.updateTotalPages();
       });
 
       this.book.on('book:pageChanged', (location) => {
         var currentLocation = this.book.getCurrentLocationCfi();
         this.currentPage = this.book.pagination.pageFromCfi(currentLocation);
-        this.extractCurrentChapter();
+        this.updateCurrentChapter();
       });
 
-      this.book.generatePagination().then(() => {
-        this.totalPages = `of ${this.book.pagination.totalPages}`;
-      });
+      this.updateTotalPages();
 
       this.book.getToc().then(toc => {
-        this.extractCurrentChapter();
+        this.updateCurrentChapter();
       });
 
       this.book.renderTo("area");
     });
   }
 
-  extractCurrentChapter() {
+  updateTotalPages(){
+      //TODO: cancel prior pagination promise
+      this.book.generatePagination().then(() => {
+        this.totalPages = `of ${this.book.pagination.totalPages}`;
+      });
+  }
+
+  updateCurrentChapter() {
     if (this.book.toc) {
       let chapter = this.book.toc.filter(obj => obj.href == this.book.currentChapter.href)[0];
       this.currentChapter = chapter ? chapter.label : this.book.metadata.bookTitle;
@@ -92,8 +108,8 @@ export class HomePage {
   settings(ev) {
     let popover = this.popoverCtrl.create(SettingsPage, {
       backgroundColor: this.book.settings.styles['background-color'],
-      fontFamily : this.book.settings.styles['font-family'],
-      fontSize : this.book.settings.styles['font-size'],
+      fontFamily: this.book.settings.styles['font-family'],
+      fontSize: this.book.settings.styles['font-size'],
     });
     popover.present({ ev });
   }
