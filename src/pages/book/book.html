@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar transparent [color]="toolbarColor" *ngIf="showToolbars">
+  <ion-navbar transparent [color]="toolbarColor" [hidden]="!showToolbars">
     <ion-buttons start>
       <button ion-button icon-only (tap)="toc($event)">
         <ion-icon name="menu"></ion-icon>
