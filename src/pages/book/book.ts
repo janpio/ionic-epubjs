@@ -28,10 +28,8 @@ export class BookPage {
     public navParams: NavParams,
   ) {
     let book = this.navParams.get('book');
-    console.log('book constructor', book);
 
     this.platform.ready().then(() => {
-
       // load book
       this.book = ePub(book.file);
 
@@ -45,8 +43,7 @@ export class BookPage {
       // if page changes
       this.book.on('book:pageChanged', (location) => {
         console.log('on book:pageChanged', location);
-        let currentLocation = this.book.getCurrentLocationCfi(); // TODO What does `Cfi` mean in that context?
-        this._updateCurrentPage(currentLocation);
+        this._updateCurrentPage();
         this._updatePageTitle();
       });
 
@@ -106,10 +103,12 @@ export class BookPage {
 
   }
 
-  _updateCurrentPage(currentLocation) {
-    console.log('_updateCurrentPage', currentLocation);
+  _updateCurrentPage() {
+    console.log('_updateCurrentPage');
+    // Source: https://github.com/futurepress/epub.js/wiki/Tips-and-Tricks#generating-and-getting-page-numbers (bottom)
+    let currentLocation = this.book.getCurrentLocationCfi();
     let page = this.book.pagination.pageFromCfi(currentLocation)
-    console.log('_updateCurrentPage page =', page);
+    console.log('_updateCurrentPage location =', currentLocation, 'page =', page);
     this.currentPage = page;
   }
 
@@ -117,6 +116,7 @@ export class BookPage {
     console.log('_updateTotalPages');
     //TODO: cancel prior pagination promise
     // TODO Triggers "download" of ALL pages for unpacked books. Really needed? Alternative?
+    // Source: https://github.com/futurepress/epub.js/wiki/Tips-and-Tricks#generating-and-getting-page-numbers
     this.book.generatePagination().then(() => {
       let totalPages = this.book.pagination.totalPages;
       console.log('_updateTotalPages totalPages = ', totalPages);
