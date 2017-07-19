@@ -12,8 +12,8 @@ declare var ePub: any;
 export class HomePage {
 
   book: any;
-  currentPage: any = 1;
-  totalPages: any;
+  currentPage: number = 1;
+  totalPages: any; // TODO should be number
   pageTitle: string;
 
   showToolbars: boolean = true;
@@ -31,63 +31,86 @@ export class HomePage {
       // load book
       this.book = ePub("assets/books/moby-dick/");
 
-      this.events.subscribe('select:toc', (content) => {
-        this.book.goto(content.href);
+      this._updateTotalPages();
+
+      // load toc and then update pagetitle
+      this.book.getToc().then(toc => {
+        this._updatePageTitle();
       });
 
-      this.events.subscribe('select:background-color', (color) => {
-        this.book.setStyle("background-color", color);
-        this.bgColor = color;
-        if (color == 'rgb(255, 255, 255)' || color == 'rgb(249, 241, 228)') {
-          this.toolbarColor = 'light';
-        }
-        else {
-          this.toolbarColor = 'dark';
-        }
+      // if page changes
+      this.book.on('book:pageChanged', (location) => {
+        console.log('on book:pageChanged', location);
+        let currentLocation = this.book.getCurrentLocationCfi(); // TODO What does `Cfi` mean in that context?
+        this.currentPage = this.book.pagination.pageFromCfi(currentLocation);
+        this._updatePageTitle();
       });
 
-      this.events.subscribe('select:color', (color) => {
-        this.book.setStyle("color", color);
-      });
-
-      this.events.subscribe('select:font-family', (family) => {
-        this.book.setStyle("font-family", family);
-        this.updateTotalPages();
-      });
       // render book
       this.book.renderTo("book");
 
-      this.events.subscribe('select:font-size', (size) => {
-        this.book.setStyle("font-size", size);
-        this.updateTotalPages();
-      });
-
-      this.book.on('book:pageChanged', (location) => {
-        var currentLocation = this.book.getCurrentLocationCfi();
-        this.currentPage = this.book.pagination.pageFromCfi(currentLocation);
-        this.updateCurrentChapter();
-      });
-
-      this.updateTotalPages();
-
-      this.book.getToc().then(toc => {
-        this.updateCurrentChapter();
-      });
-
+      // subscribe to events coming from other pages
+      this._subscribeToEvents();
     });
   }
 
-  updateTotalPages(){
-      //TODO: cancel prior pagination promise
-      this.book.generatePagination().then(() => {
-        this.totalPages = `of ${this.book.pagination.totalPages}`;
-      });
+  _subscribeToEvents() {
+    console.log('subscribe to events');
+
+    // toc: go to selected chapter
+    this.events.subscribe('select:toc', (content) => {
+      this.book.goto(content.href);
+    });
+
+    // settings: change background color
+    this.events.subscribe('select:background-color', (bgColor) => {
+      console.log('select:background-color', bgColor);
+      this.book.setStyle("background-color", bgColor);
+      this.bgColor = bgColor;
+      // adapt toolbar color to background color
+      if (bgColor == 'rgb(255, 255, 255)' || bgColor == 'rgb(249, 241, 228)') { // TODO don't hardcode color values, use some metadata
+        this.toolbarColor = 'light';
+      }
+      else {
+        this.toolbarColor = 'dark';
+      }
+    });
+
+    // settings: change color
+    this.events.subscribe('select:color', (color) => {
+      console.log('select:color', color);
+      this.book.setStyle("color", color);
+    });
+
+    // settings: change font
+    this.events.subscribe('select:font-family', (family) => {
+      console.log('select:font-family', family);
+      this.book.setStyle("font-family", family);
+      this._updateTotalPages();
+    });
+
+    // settings: change font size
+    this.events.subscribe('select:font-size', (size) => {
+      console.log('select:font-size', size);
+      this.book.setStyle("font-size", size);
+      this._updateTotalPages();
+    });
+
   }
 
-  updateCurrentChapter() {
+  _updateTotalPages(){
+    console.log('_updateTotalPages');
+    //TODO: cancel prior pagination promise
+    this.book.generatePagination().then(() => {
+      this.totalPages = `of ${this.book.pagination.totalPages}`; // TODO where is this.totalPages actually used?
+    });
+  }
+
+  _updatePageTitle() {
+    console.log('_updatePageTitle');
     if (this.book.toc) {
-      let chapter = this.book.toc.filter(obj => obj.href == this.book.currentChapter.href)[0];
       // Use chapter name
+      let chapter = this.book.toc.filter(obj => obj.href == this.book.currentChapter.href)[0]; // TODO What does this code do?
       this.pageTitle = chapter ? chapter.label : this.book.metadata.bookTitle;
     }
     else {
