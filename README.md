@@ -20,10 +20,11 @@ As just importing Epub.js after installing it via `npm` unfortunately doesn't wo
   * Display chapter title the reader is currently in
 * Table of Contents
   * Show the table of contents of a book
+  * Tap chapter to go there
 * Settings
   * Change font size
   * Change background color (and with it text color)
-  * UI automatically adapt the toolbar color depending on the chosen background and text color
+  * UI automatically adapts the toolbar color depending on the chosen background and text color
   * Change font family
 
 ## Development
