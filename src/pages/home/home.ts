@@ -12,8 +12,8 @@ declare var ePub: any;
 export class HomePage {
   book: any;
   currentPage: any = 1;
-  currentChapter: any;
   totalPages: any;
+  pageTitle: string;
   showToolbars: boolean = true;
   bgColor: any;
   toolbarColor: string = 'light';
@@ -78,10 +78,12 @@ export class HomePage {
   updateCurrentChapter() {
     if (this.book.toc) {
       let chapter = this.book.toc.filter(obj => obj.href == this.book.currentChapter.href)[0];
-      this.currentChapter = chapter ? chapter.label : this.book.metadata.bookTitle;
+      // Use chapter name
+      this.pageTitle = chapter ? chapter.label : this.book.metadata.bookTitle;
     }
     else {
-      this.currentChapter = this.book.metadata.bookTitle;
+      // Use book title as fallback
+      this.pageTitle = this.book.metadata.bookTitle;
     }
   }
 
