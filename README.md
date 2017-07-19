@@ -8,11 +8,21 @@ As just importing Epub.js after installing it via `npm` unfortunately doesn't wo
 
 ## Functionality
 
-* Load and render locally available books from `/assets/books`
-* Tap through pages by using "next" and "previous" buttons
-* Display page number the reader is currently on
-* Display total number of pages in book
-* Display chapter title the reader is currently in
-* Show the tables of contents of a book
-* Change font size, background color (and with it text color) and font the books is displayed with
-* Adapt the toolbar and UI color depending on the chosen background color and text color
+* Open books
+  * Load and render locally available books from `/assets/books`
+  * Switch between different books
+* Reading UI
+  * Tap through pages by using "next" and "previous" buttons
+  * Swipe pages to go to next or previous page
+  * Tap the page to toggle a reading mode with no UI
+  * Display page number the reader is currently on
+  * Display total number of pages in book
+  * Display chapter title the reader is currently in
+* Table of Contents
+  * Show the table of contents of a book
+* Settings
+  * Change font size
+  * Change background color (and with it text color)
+  * UI automatically adapt the toolbar color depending on the chosen background and text color
+  * Change font family
+
