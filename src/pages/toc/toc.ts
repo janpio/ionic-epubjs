@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 
-/**
- * Generated class for the TocPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
   selector: 'page-toc',
@@ -22,5 +16,4 @@ export class TocPage {
     this.events.publish('select:toc', content);
     this.navCtrl.pop();
   }
-
 }
