@@ -1,13 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>MyApp</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+<widget id="de.janpiotrowski.ionic.epubjs" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>ionic-epubjs</name>
+    <description>Ionic app using epubjs.</description>
+    <author email="piotrowski@gmail.com" href="https://janpiotrowski.de/">Jan Piotrowski</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
-    <allow-navigation href="http://192.168.15.217:8101" />
-    <allow-navigation href="http://21.20.0.130:8101" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
