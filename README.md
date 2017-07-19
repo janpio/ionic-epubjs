@@ -26,3 +26,25 @@ As just importing Epub.js after installing it via `npm` unfortunately doesn't wo
   * UI automatically adapt the toolbar color depending on the chosen background and text color
   * Change font family
 
+## Development
+
+1. Clone the repo
+2. Run `npm install`
+3. Run `ionic cordova prepare`
+4. Run `ionic serve` or `ionic cordova run android|ios`
+
+## Information + Resources
+
+* Good to know
+  * Cfi = [EPUB Canonical Fragment Identifiers](http://www.idpf.org/epub/linking/cfi/epub-cfi.html)
+  * EPUB is a registered trademark of the [IDPF](http://idpf.org/)
+
+* Epub.js
+  * [https://github.com/futurepress/epub.js](https://github.com/futurepress/epub.js)
+  * [https://github.com/futurepress/epub.js/blob/master/documentation/README.md](https://github.com/futurepress/epub.js/blob/master/documentation/README.md)
+    * [https://github.com/futurepress/epub.js/blob/master/documentation/README.md#methods](https://github.com/futurepress/epub.js/blob/master/documentation/README.md#methods)
+    * [https://github.com/futurepress/epub.js/blob/master/documentation/README.md#events](https://github.com/futurepress/epub.js/blob/master/documentation/README.md#events)
+  * [https://github.com/futurepress/epub.js/wiki/Tips-and-Tricks](https://github.com/futurepress/epub.js/wiki/Tips-and-Tricks)
+  * Examples
+    * [http://futurepress.github.io/epub.js/](http://futurepress.github.io/epub.js/)
+    * [https://github.com/futurepress/epub.js/tree/master/examples](https://github.com/futurepress/epub.js/tree/master/examples)
