@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { NavController, Platform, PopoverController, Events } from 'ionic-angular';
+import { NavController, Platform, PopoverController, Events, NavParams } from 'ionic-angular';
 import { TocPage } from '../toc/toc';
 import { SettingsPage } from '../settings/settings';
 
 declare var ePub: any;
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-book',
+  templateUrl: 'book.html'
 })
-export class HomePage {
+export class BookPage {
 
   book: any;
   currentPage: number = 1;
@@ -24,12 +24,14 @@ export class HomePage {
     public navCtrl: NavController,
     public platform: Platform,
     public popoverCtrl: PopoverController,
-    public events: Events
+    public events: Events,
+    public navParams: NavParams,
   ) {
+    let book = this.navParams.data.book;
     this.platform.ready().then(() => {
 
       // load book
-      this.book = ePub("assets/books/moby-dick/");
+      this.book = ePub(book);
 
       this._updateTotalPages();
 
@@ -101,6 +103,7 @@ export class HomePage {
   _updateTotalPages(){
     console.log('_updateTotalPages');
     //TODO: cancel prior pagination promise
+    // TODO Triggers "download" of ALL pages. Really needed? Alternative?
     this.book.generatePagination().then(() => {
       this.totalPages = `of ${this.book.pagination.totalPages}`; // TODO where is this.totalPages actually used?
     });

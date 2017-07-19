@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { BookPage } from '../pages/book/book';
 import { TocPage } from '../pages/toc/toc';
 import { SettingsPage } from '../pages/settings/settings';
 
@@ -13,6 +14,7 @@ import { SettingsPage } from '../pages/settings/settings';
   declarations: [
     MyApp,
     HomePage,
+    BookPage,
     TocPage,
     SettingsPage
   ],
@@ -24,6 +26,7 @@ import { SettingsPage } from '../pages/settings/settings';
   entryComponents: [
     MyApp,
     HomePage,
+    Bookpage,
     TocPage,
     SettingsPage
   ],
