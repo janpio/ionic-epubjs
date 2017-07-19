@@ -27,6 +27,11 @@ export class HomePage {
     book2.label = "Moby Dick (.epub)";
     book2.file =  "assets/books/moby-dick.epub";
     this.books.push(book2);
+
+    let book3 = new Book();
+    book3.label = "Open (unpacked)";
+    book3.file =  "assets/books/open/";
+    this.books.push(book3);
   }
 
   ionViewDidLoad() {
