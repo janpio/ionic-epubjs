@@ -1,12 +1,11 @@
-.settings-page {
-  .text-to-change div {
-    margin: 10px auto;
-  }
+page-settings {
 
   ion-row,
   ion-col {
     padding: 0;
   }
+
+  // Text Size
 
   .text-button {
     padding-left: 0;
@@ -26,6 +25,8 @@
   .text-larger {
     font-size: 16px;
   }
+
+  // Color
 
   .row-dots {
     text-align: center;
@@ -64,6 +65,8 @@
     border-style: solid;
   }
 
+  // Font-Family
+
   .text-athelas {
     font-family: "Athelas";
   }
@@ -91,4 +94,5 @@
   .text-times-new-roman {
     font-family: "Times New Roman";
   }
+
 }

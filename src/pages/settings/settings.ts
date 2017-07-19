@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-setting',
+  selector: 'page-settings',
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
