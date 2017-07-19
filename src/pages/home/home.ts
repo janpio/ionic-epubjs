@@ -10,17 +10,25 @@ declare var ePub: any;
   templateUrl: 'home.html'
 })
 export class HomePage {
+
   book: any;
   currentPage: any = 1;
   totalPages: any;
   pageTitle: string;
+
   showToolbars: boolean = true;
   bgColor: any;
   toolbarColor: string = 'light';
 
-  constructor(public navCtrl: NavController, public platform: Platform, public popoverCtrl: PopoverController, public events: Events) {
+  constructor(
+    public navCtrl: NavController,
+    public platform: Platform,
+    public popoverCtrl: PopoverController,
+    public events: Events
+  ) {
     this.platform.ready().then(() => {
 
+      // load book
       this.book = ePub("assets/books/moby-dick/");
 
       this.events.subscribe('select:toc', (content) => {
@@ -46,6 +54,7 @@ export class HomePage {
         this.book.setStyle("font-family", family);
         this.updateTotalPages();
       });
+      // render book
       this.book.renderTo("book");
 
       this.events.subscribe('select:font-size', (size) => {
@@ -87,20 +96,24 @@ export class HomePage {
     }
   }
 
+  // Navigation
+
   prev() {
-    if (this.currentPage == 2) {
+    console.log('prev');
+    if (this.currentPage == 2) { // TODO Why this special case here?
       this.book.gotoPage(1);
-    }
-    else {
+    } else {
       this.book.prevPage();
     }
   }
 
   next() {
+    console.log('next');
     this.book.nextPage();
   }
 
   toc(ev) {
+    console.log('toc');
     let popover = this.popoverCtrl.create(TocPage, {
       toc: this.book.toc
     });
@@ -108,20 +121,26 @@ export class HomePage {
   }
 
   settings(ev) {
+    console.log('settings');
     let popover = this.popoverCtrl.create(SettingsPage, {
-      backgroundColor: this.book.settings.styles['background-color'],
+      backgroundColor: this.book.settings.styles['background-color'], // TODO: Color is not needed here?
       fontFamily: this.book.settings.styles['font-family'],
       fontSize: this.book.settings.styles['font-size'],
     });
     popover.present({ ev });
   }
 
+
+  // Touchlayer
+
   toggleToolbars() {
+    console.log('toggleToolbars');
     this.showToolbars = !this.showToolbars;
   }
 
   changePage(event) {
-    if (event.velocityX < 0) {
+    console.log('changePage', event);
+    if (event.velocityX < 0) { // TODO Best way to do this?
       this.next();
     }
     else {
