@@ -26,7 +26,7 @@ import { SettingsPage } from '../pages/settings/settings';
   entryComponents: [
     MyApp,
     HomePage,
-    Bookpage,
+    BookPage,
     TocPage,
     SettingsPage
   ],

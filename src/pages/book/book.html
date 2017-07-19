@@ -1,5 +1,6 @@
 <ion-header>
-  <ion-toolbar transparent [color]="toolbarColor" *ngIf="showToolbars">
+
+  <ion-navbar transparent [color]="toolbarColor" *ngIf="showToolbars">
     <ion-buttons start>
       <button ion-button icon-only (tap)="toc($event)">
         <ion-icon name="menu"></ion-icon>
@@ -11,7 +12,7 @@
         <ion-icon name="settings"></ion-icon>
       </button>
     </ion-buttons>
-  </ion-toolbar>
+  </ion-navbar>
 </ion-header>
 
 <ion-content [ngStyle]="{'backgroundColor': bgColor}" no-bounce>

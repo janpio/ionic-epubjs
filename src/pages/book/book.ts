@@ -27,11 +27,13 @@ export class BookPage {
     public events: Events,
     public navParams: NavParams,
   ) {
-    let book = this.navParams.data.book;
+    let book = this.navParams.get('book');
+    console.log('book constructor', book);
+
     this.platform.ready().then(() => {
 
       // load book
-      this.book = ePub(book);
+      this.book = ePub(book.file);
 
       this._updateTotalPages();
 
@@ -48,12 +50,16 @@ export class BookPage {
         this._updatePageTitle();
       });
 
-      // render book
-      this.book.renderTo("book");
-
       // subscribe to events coming from other pages
       this._subscribeToEvents();
     });
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad BookPage');
+
+    // render book
+    this.book.renderTo("book");
   }
 
   _subscribeToEvents() {

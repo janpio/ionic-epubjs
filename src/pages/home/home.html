@@ -1,0 +1,16 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>ionic-epubjs</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <p>Please choose a book to view:</p>
+  <ion-list>
+    <ion-item *ngFor="let book of books" (tap)="show(book)">{{book.label}}</ion-item>
+  </ion-list>
+</ion-content>
