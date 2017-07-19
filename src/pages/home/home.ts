@@ -46,6 +46,7 @@ export class HomePage {
         this.book.setStyle("font-family", family);
         this.updateTotalPages();
       });
+      this.book.renderTo("book");
 
       this.events.subscribe('select:font-size', (size) => {
         this.book.setStyle("font-size", size);
@@ -64,7 +65,6 @@ export class HomePage {
         this.updateCurrentChapter();
       });
 
-      this.book.renderTo("area");
     });
   }
 

@@ -1,19 +1,19 @@
 page-home {
-    #container, #area {
+    #touchlayer, #book {
     width: 100%;
     height: 100%;
     }
 
-    #container{
+    #touchlayer{
         z-index: 999;
         position: absolute
     }
 
-    #area {
+    #book {
         z-index: 0;
     }
 
-    #area iframe {
+    #book iframe {
         border: none;
     }
 
