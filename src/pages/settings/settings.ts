@@ -8,11 +8,11 @@ import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 })
 export class SettingsPage {
 
-  background: string;
+  backgroundColor: string;
   fontSize: any;
-  fontFamily;
+  fontFamily: any;
 
-  colors = {
+  colors = { // TODO Don't send color codes back to the book page, make it set classes
     'white': {
       'bg': 'rgb(255, 255, 255)',
       'fg': 'rgb(0, 0, 0)'
@@ -31,12 +31,17 @@ export class SettingsPage {
     },
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public events: Events
+  ) {
     if (this.navParams.data) {
-      this.background = this.getColorName(this.navParams.data.backgroundColor);
+      let backgroundColor = this.navParams.data.backgroundColor;
+      this.backgroundColor = this._getColorName(backgroundColor);
       this.fontSize = this.navParams.data.fontSize;
       if (this.navParams.data.fontFamily) {
-        this.fontFamily = this.navParams.data.fontFamily.replace(/'/g, "");
+        this.fontFamily = this.navParams.data.fontFamily.replace(/'/g, ""); // TODO Huh?
       }
       else {
         //TODO get the default font-family
@@ -44,32 +49,28 @@ export class SettingsPage {
     }
   }
 
-
-  getColorName(background) {
+  _getColorName(color) {
+    if (!color) return 'white';
     let colorName = 'white';
-
-    if (!background) return 'white';
-
     for (var key in this.colors) {
-      if (this.colors[key].bg == background) {
+      if (this.colors[key].bg == color) {
         colorName = key;
       }
     }
-
     return colorName;
   }
 
-  changeBackground(color) {
-    this.background = color;
-    this.events.publish('select:background-color', this.colors[color].bg);
-    this.events.publish('select:color', this.colors[color].fg);
+  changeBackground(backgroundColor) {
+    this.backgroundColor = backgroundColor;
+    this.events.publish('select:background-color', this.colors[backgroundColor].bg);
+    this.events.publish('select:color', this.colors[backgroundColor].fg);
   }
 
   changeFontSize(direction) {
     let size = this.fontSize ? this.fontSize : '1em';
     let sizeValue = +size.replace('em', '');
     let newSizeValue = direction == 'larger' ? sizeValue += 0.1 : sizeValue -= 0.1;
-    if (newSizeValue >= 0.4 && newSizeValue <= 2) {
+    if (newSizeValue >= 0.4 && newSizeValue <= 2) { // TODO this should be visible in the UI (disable button)
       this.fontSize = `${newSizeValue}em`;
       this.events.publish('select:font-size', this.fontSize);
     }
