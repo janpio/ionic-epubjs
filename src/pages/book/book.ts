@@ -46,7 +46,7 @@ export class BookPage {
       this.book.on('book:pageChanged', (location) => {
         console.log('on book:pageChanged', location);
         let currentLocation = this.book.getCurrentLocationCfi(); // TODO What does `Cfi` mean in that context?
-        this.currentPage = this.book.pagination.pageFromCfi(currentLocation);
+        this._updateCurrentPage(currentLocation);
         this._updatePageTitle();
       });
 
@@ -59,7 +59,7 @@ export class BookPage {
     console.log('ionViewDidLoad BookPage');
 
     // render book
-    this.book.renderTo("book");
+    this.book.renderTo("book"); // TODO We should work with ready somehow here I think
   }
 
   _subscribeToEvents() {
@@ -106,26 +106,37 @@ export class BookPage {
 
   }
 
-  _updateTotalPages(){
+  _updateCurrentPage(currentLocation) {
+    console.log('_updateCurrentPage', currentLocation);
+    let page = this.book.pagination.pageFromCfi(currentLocation)
+    console.log('_updateCurrentPage page =', page);
+    this.currentPage = page;
+  }
+
+  _updateTotalPages() {
     console.log('_updateTotalPages');
     //TODO: cancel prior pagination promise
-    // TODO Triggers "download" of ALL pages. Really needed? Alternative?
+    // TODO Triggers "download" of ALL pages for unpacked books. Really needed? Alternative?
     this.book.generatePagination().then(() => {
-      this.totalPages = `of ${this.book.pagination.totalPages}`; // TODO where is this.totalPages actually used?
+      let totalPages = this.book.pagination.totalPages;
+      console.log('_updateTotalPages totalPages = ', totalPages);
+      this.totalPages = `of ${totalPages}`; // TODO where is this.totalPages actually used?
+    }).catch(error => {
+      console.log('_updateTotalPages error = ', error);
     });
   }
 
   _updatePageTitle() {
     console.log('_updatePageTitle');
+    let bookTitle = this.book.metadata.bookTitle;
+    let pageTitle = bookTitle; // default to book title
     if (this.book.toc) {
       // Use chapter name
       let chapter = this.book.toc.filter(obj => obj.href == this.book.currentChapter.href)[0]; // TODO What does this code do?
-      this.pageTitle = chapter ? chapter.label : this.book.metadata.bookTitle;
+      pageTitle = chapter ? chapter.label : bookTitle; // fallback to book title again
     }
-    else {
-      // Use book title as fallback
-      this.pageTitle = this.book.metadata.bookTitle;
-    }
+    console.log('_updatePageTitle title =', pageTitle);
+    this.pageTitle = pageTitle;
   }
 
   // Navigation
