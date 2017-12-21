@@ -45,7 +45,7 @@ export class HomePage {
 
     let book6 = new Book();
     book6.label = "Remote with correct headers [works everywhere] (.epub)";
-    book6.file = "http://yatsa.betamo.de/ionic-epubjs/Metamorphosis-jackson.epub";
+    book6.file = "https://yatsa.betamo.de/ionic-epubjs/Metamorphosis-jackson.epub";
     this.books.push(book6);
 
   }
