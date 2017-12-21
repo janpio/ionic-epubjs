@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" version="3.0" xml:lang="en" unique-identifier="p9781911529026">
+<metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+<dc:title>Open: The Philosophy and Practices that are Revolutionizing Education and Science</dc:title>
+<dc:creator id="creator">Rajiv S. Jhangiani and Robert Biswas-Diener</dc:creator>
+<dc:publisher>University of California Press.</dc:publisher>
+<dc:identifier id="p9781911529026">URN:ISBN:9781911529026</dc:identifier>
+<dc:language>en</dc:language>
+<dc:rights>CC-BY</dc:rights>
+<meta property="dcterms:modified">2017-03-20T00:00:00Z</meta>
+<meta name="cover" content="cover"/>
+</metadata>
+<manifest>
+<item id="toc" properties="nav" href="nav.xhtml" media-type="application/xhtml+xml" />
+<item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
+<item id="style" href="style.css" media-type="text/css"/>
+<item id="id001" properties="svg" href="001.xhtml" media-type="application/xhtml+xml"/>
+<item id="id002" href="002.xhtml" media-type="application/xhtml+xml"/>
+<item id="id003" href="003.xhtml" media-type="application/xhtml+xml"/>
+<item id="id004" href="004.xhtml" media-type="application/xhtml+xml"/>
+<item id="id005" href="005.xhtml" media-type="application/xhtml+xml"/>
+<item id="id006" href="006.xhtml" media-type="application/xhtml+xml"/>
+<item id="id007" href="007.xhtml" media-type="application/xhtml+xml"/>
+<item id="id008" href="008.xhtml" media-type="application/xhtml+xml"/>
+<item id="id009" href="009.xhtml" media-type="application/xhtml+xml"/>
+<item id="id010" href="010.xhtml" media-type="application/xhtml+xml"/>
+<item id="id011" href="011.xhtml" media-type="application/xhtml+xml"/>
+<item id="id012" href="012.xhtml" media-type="application/xhtml+xml"/>
+<item id="id013" href="013.xhtml" media-type="application/xhtml+xml"/>
+<item id="id014" href="014.xhtml" media-type="application/xhtml+xml"/>
+<item id="id015" href="015.xhtml" media-type="application/xhtml+xml"/>
+<item id="id016" href="016.xhtml" media-type="application/xhtml+xml"/>
+<item id="id017" href="017.xhtml" media-type="application/xhtml+xml"/>
+<item id="id018" href="018.xhtml" media-type="application/xhtml+xml"/>
+<item id="id019" href="019.xhtml" media-type="application/xhtml+xml"/>
+<item id="id020" href="020.xhtml" media-type="application/xhtml+xml"/>
+<item id="id021" href="021.xhtml" media-type="application/xhtml+xml"/>
+<item id="id022" href="022.xhtml" media-type="application/xhtml+xml"/>
+<item id="id023" href="023.xhtml" media-type="application/xhtml+xml"/>
+<item id="id024" href="024.xhtml" media-type="application/xhtml+xml"/>
+<item id="id025" href="025.xhtml" media-type="application/xhtml+xml"/>
+<item id="id026" href="026.xhtml" media-type="application/xhtml+xml"/>
+<item id="id027" href="027.xhtml" media-type="application/xhtml+xml"/>
+<item id="id028" href="028.xhtml" media-type="application/xhtml+xml"/>
+<item id="id029" href="029.xhtml" media-type="application/xhtml+xml"/>
+<item id="id030" href="030.xhtml" media-type="application/xhtml+xml"/>
+<item id="id031" href="031.xhtml" media-type="application/xhtml+xml"/>
+<item id="id032" href="032.xhtml" media-type="application/xhtml+xml"/>
+<item id="idfont1" href="fonts/MinionPro-Bold.otf" media-type="application/vnd.ms-opentype"/>
+<item id="idfont2" href="fonts/MinionPro-BoldIt.otf" media-type="application/vnd.ms-opentype"/>
+<item id="idfont3" href="fonts/MinionPro-It.otf" media-type="application/vnd.ms-opentype"/>
+<item id="idfont4" href="fonts/MinionPro-Regular.otf" media-type="application/vnd.ms-opentype"/>
+<item id="idfont5" href="fonts/MinionPro-Semibold.otf" media-type="application/vnd.ms-opentype"/>
+<item id="idfont6" href="fonts/MinionPro-SemiboldIt.otf" media-type="application/vnd.ms-opentype"/>
+<item id="idfont7" href="fonts/PalatinoLTStd-Roman.otf" media-type="application/vnd.ms-opentype"/>
+<item id="idfont8" href="fonts/Thonburi.ttf" media-type="application/vnd.ms-opentype"/>
+<item id="cover" href="images/cover.jpg" media-type="image/jpeg"/>
+<item id="img1" href="images/img1.jpg" media-type="image/jpeg"/>
+<item id="img2" href="images/img2.jpg" media-type="image/jpeg"/>
+<item id="img3" href="images/img3.jpg" media-type="image/jpeg"/>
+<item id="img4" href="images/img4.jpg" media-type="image/jpeg"/>
+<item id="img5" href="images/img5.jpg" media-type="image/jpeg"/>
+<item id="img6" href="images/img6.jpg" media-type="image/jpeg"/>
+<item id="img7" href="images/img7.jpg" media-type="image/jpeg"/>
+<item id="img8" href="images/img8.jpg" media-type="image/jpeg"/>
+<item id="img9" href="images/img9.jpg" media-type="image/jpeg"/>
+<item id="img10" href="images/img10.jpg" media-type="image/jpeg"/>
+<item id="img11" href="images/img11.jpg" media-type="image/jpeg"/>
+<item id="img12" href="images/img12.jpg" media-type="image/jpeg"/>
+<item id="img13" href="images/img13.jpg" media-type="image/jpeg"/>
+<item id="img14" href="images/img14.jpg" media-type="image/jpeg"/>
+<item id="img15" href="images/img15.jpg" media-type="image/jpeg"/>
+<item id="img16" href="images/img16.jpg" media-type="image/jpeg"/>
+<item id="img17" href="images/img17.jpg" media-type="image/jpeg"/>
+<item id="img18" href="images/img18.jpg" media-type="image/jpeg"/>
+<item id="img19" href="images/img19.jpg" media-type="image/jpeg"/>
+<item id="img20" href="images/img20.jpg" media-type="image/jpeg"/>
+<item id="img21" href="images/img21.jpg" media-type="image/jpeg"/>
+<item id="img22" href="images/img22.jpg" media-type="image/jpeg"/>
+</manifest>
+<spine toc="ncx">
+<itemref idref="id001"/>
+<itemref idref="id002"/>
+<itemref idref="id003"/>
+<itemref idref="id004"/>
+<itemref idref="id005"/>
+<itemref idref="id006"/>
+<itemref idref="id007"/>
+<itemref idref="id008"/>
+<itemref idref="id009"/>
+<itemref idref="id010"/>
+<itemref idref="id011"/>
+<itemref idref="id012"/>
+<itemref idref="id013"/>
+<itemref idref="id014"/>
+<itemref idref="id015"/>
+<itemref idref="id016"/>
+<itemref idref="id017"/>
+<itemref idref="id018"/>
+<itemref idref="id019"/>
+<itemref idref="id020"/>
+<itemref idref="id021"/>
+<itemref idref="id022"/>
+<itemref idref="id023"/>
+<itemref idref="id024"/>
+<itemref idref="id025"/>
+<itemref idref="id026"/>
+<itemref idref="id027"/>
+<itemref idref="id028"/>
+<itemref idref="id029"/>
+<itemref idref="id030"/>
+<itemref idref="id031"/>
+<itemref idref="id032"/>
+</spine>
+<guide>
+<reference type="cover" title="Cover" href="001.xhtml"/>
+</guide>
+</package>
