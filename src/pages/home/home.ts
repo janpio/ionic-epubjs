@@ -32,6 +32,22 @@ export class HomePage {
     book3.label = "Open (unpacked)";
     book3.file =  "assets/books/open/";
     this.books.push(book3);
+
+    let book4 = new Book();
+    book4.label = "Remote with Ionic CLI service proxy [works only with `ionic serve`] (.epub)";
+    book4.file = "amazon/pressbooks-samplefiles/MetamorphosisJacksonTheme/Metamorphosis-jackson.epub";
+    this.books.push(book4);
+
+    let book5 = new Book();
+    book5.label = "Remote [works on device in native app only] (.epub)";
+    book5.file = "https://s3-us-west-2.amazonaws.com//pressbooks-samplefiles/MetamorphosisJacksonTheme/Metamorphosis-jackson.epub";
+    this.books.push(book5);
+
+    let book6 = new Book();
+    book6.label = "Remote with correct headers [works everywhere] (.epub)";
+    book6.file = "http://yatsa.betamo.de/ionic-epubjs/Metamorphosis-jackson.epub";
+    this.books.push(book6);
+
   }
 
   ionViewDidLoad() {

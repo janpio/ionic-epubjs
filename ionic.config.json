@@ -1,5 +1,14 @@
 {
   "name": "ionic-epubjs",
   "app_id": "92fa9fd7",
-  "type": "ionic-angular"
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  },
+  "proxies": [
+    {
+      "path": "/amazon",
+      "proxyUrl": "https://s3-us-west-2.amazonaws.com/"
+    }
+  ]
 }
