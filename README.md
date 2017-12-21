@@ -4,7 +4,7 @@ Sample project of how to use [Epub.js](https://github.com/futurepress/epub.js) i
 
 ## How Epub.js is integrated
 
-As just importing Epub.js after installing it via `npm` unfortunately doesn't work, I copied over the `build` directory of the npm package of epubjs from `/node_modules/epubjs` to `/src/assets/epubjs` and included `epubjs.min.js` in `index.html`. That way the `ePub` object is globally available and can be used in Typescript after declaring it with `declare var ePub: any;`.
+As just natively importing Epub.js after installing it via `npm` unfortunately doesn't work, I copied over the `build` directory of the npm package of epubjs from `/node_modules/epubjs` to `/src/assets/epubjs` and included `epubjs.min.js` in `index.html`. That way the `ePub` object is globally available and can be used in Typescript after declaring it with `declare var ePub: any;`.
 
 ## Functionality
 
