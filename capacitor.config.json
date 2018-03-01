@@ -1,0 +1,6 @@
+{
+  "appId": "de.janpiotrowski.ionic.epubjs.capacitor",
+  "appName": "ionic-epubjs Capacitor",
+  "bundledWebRuntime": false,
+  "webDir": "www"
+}
