@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="de.janpiotrowski.ionic.epubjs" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>ionic-epubjs</name>
+    <name>ionic-epubjs Cordova</name>
     <description>Ionic app using epubjs.</description>
     <author email="piotrowski@gmail.com" href="https://janpiotrowski.de/">Jan Piotrowski</author>
     <content src="index.html" />
