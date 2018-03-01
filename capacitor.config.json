@@ -2,5 +2,6 @@
   "appId": "de.janpiotrowski.ionic.epubjs.capacitor",
   "appName": "ionic-epubjs Capacitor",
   "bundledWebRuntime": false,
-  "webDir": "www"
+  "webDir": "www",
+  "windowsAndroidStudioPath": "C:\\Users\\Jan\\Desktop\\Android Studio 3 beta 6\\bin\\studio64.exe"
 }
