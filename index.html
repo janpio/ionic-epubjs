@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="viewport"
+        content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <link rel="manifest" href="manifest.json">
+
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+  <link href="css/ionic.app.css" rel="stylesheet">
+  -->
+
+  <!-- ionic/angularjs js -->
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <script src="lib/epub.js/build/epub.js"></script>
+  <script src="lib/screenfull/dist/screenfull.js"></script>
+  <!--<script src="lib/angular-screenfull/dist/angular-screenfull.min.js"></script>-->
+  <script src="lib/jquery/dist/jquery.min.js"></script>
+  <script>
+    "use strict";
+    document.onreadystatechange = function () {
+      if (document.readyState == "complete") {
+        EPUBJS.Render.Iframe.prototype.setLeft = function (leftPos) {
+          this.docEl.style[this.transform] = 'translate(' + (-leftPos) + 'px, 0)';
+        };
+//on format changing this bunch of code render different page
+        EPUBJS.Hooks.register('beforeChapterDisplay').pageAnimation = function (callback, renderer) {
+          window.setTimeout(function () {
+            var style = renderer.doc.createElement("style");
+            style.innerHTML = "*{-webkit-transition: transform {t} ease;-moz-transition: tranform {t} ease;-o-transition: transform {t} ease;-ms-transition: transform {t} ease;transition: transform {t} ease;}";
+            style.innerHTML = style.innerHTML.split("{t}").join("0.5s");
+            renderer.doc.body.appendChild(style);
+          }, 100);
+          if (callback) {
+            callback();
+          }
+        };
+
+//        EPUBJS.Hooks.register('beforeChapterDisplay').swipeDetection = function (callback, renderer) {
+//          var script = renderer.doc.createElement('script');
+//          script.text = "!function(a,b,c){function f(a){d=a.touches[0].clientX,e=a.touches[0].clientY}function g(f){if(d&&e){var g=f.touches[0].clientX,h=f.touches[0].clientY,i=d-g,j=e-h;Math.abs(i)>Math.abs(j)&&(i>a?b():i<0-a&&c()),d=null,e=null}}var d=null,e=null;document.addEventListener('touchstart',f,!1),document.addEventListener('touchmove',g,!1)}";
+//          /* (threshold, leftswipe, rightswipe) */
+//          script.text += "(10,function(){parent.angular.element(parent.document.querySelector('#area')).scope().Book.nextPage()},function(){parent.angular.element(parent.document.querySelector('#area')).scope().Book.prevPage()});"
+//          renderer.doc.head.appendChild(script);
+//          if (callback) {
+//            callback();
+//          }
+//        };
+
+        EPUBJS.Hooks.register('beforeChapterDisplay').touchDetection = function (callback, renderer) {
+          var script = renderer.doc.createElement('script');
+          script.text = "function g1(f) { console.log('Index currentHighlights: '); var currentHighlights = parent.angular.element(parent.document.querySelector('#area')).scope().currentHighlights; if (currentHighlights.length > 0 && currentHighlights[0] != '') { console.log('Index currentHighlights: ', currentHighlights); return; } var divWidth = parent.$('#area').width(); var clickX = f.changedTouches[0].clientX; if (clickX && divWidth && clickX > divWidth / 2) { parent.angular.element(parent.document.querySelector('#area')).scope().Book.nextPage() } else { parent.angular.element(parent.document.querySelector('#area')).scope().Book.prevPage() } } document.addEventListener('touchend', g1, false);";
+          renderer.doc.head.appendChild(script);
+          if (callback) {
+            callback();
+          }
+        };
+
+        EPUBJS.Hooks.register("beforeChapterDisplay").highlight = function(callback, renderer){
+
+          var s = document.createElement("style");
+          s.innerHTML =".highlight { background: yellow; }";
+
+          var selection = document.createElement("style");
+          selection.innerHTML ="::selection { background: yellow; }";
+
+          renderer.render.document.head.appendChild(s);
+          renderer.render.document.head.appendChild(selection);
+
+          if(callback) callback();
+        };
+
+//        EPUBJS.Hooks.register('beforeChapterDisplay').touchMove = function (callback, renderer) {
+//          var script = renderer.doc.createElement('script');
+//          script.text = "document.addEventListener('touchmove', function(){alert(window.getSelection())}, false);";
+//          renderer.doc.head.appendChild(script);
+//          if (callback) {
+//            callback();
+//          }
+//        };
+        EPUBJS.Hooks.register('beforeChapterDisplay').selection = function (callback, renderer) {
+          var script = renderer.doc.createElement('script');
+          script.text = "function handleSelection() { parent.angular.element(parent.document.querySelector('#area')).scope().appendSelection(window.getSelection().toString()); } document.addEventListener('selectionchange', handleSelection, false);";
+          renderer.doc.head.appendChild(script);
+          if (callback) {
+            callback();
+          }
+        };
+      }
+    };
+
+
+  </script>
+  <script src="lib/jszip/dist/jszip.min.js"></script>
+
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="cordova.js"></script>
+
+  <!-- your app's js -->
+  <script src="js/app.js"></script>
+  <script src="js/controllers/controllers.js"></script>
+  <script src="js/controllers/app-ctrl.js"></script>
+  <script src="js/controllers/browse-ctrl.js"></script>
+  <script src="js/controllers/bookmarks-ctrl.js"></script>
+  <script src="js/controllers/highlights-ctrl.js"></script>
+  <script src="js/services/services.js"></script>
+  <script src="js/services/storage-service.js"></script>
+  <script src="js/services/book-util-service.js"></script>
+</head>
+
+<body ng-app="starter">
+<ion-nav-view></ion-nav-view>
+</body>
+</html>

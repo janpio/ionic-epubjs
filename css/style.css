@@ -1,0 +1,100 @@
+/* Empty. Add your own CSS if you like */
+.scroll {
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+
+}
+
+iframe {
+  height: 100%;
+  width: 100%;
+}
+
+#area {
+  height: 95%;
+  /*width: 92%;*/
+  margin: 5px;
+  /*background-color: #fff3eb;*/
+}
+
+#format-area {
+  height: 95%;
+  margin: 5px;
+  /*background-color: #fff3eb;*/
+}
+
+/*.card {*/
+/*height: 100%;*/
+/*margin: 5px;*/
+/*!*background-color: #fff3eb;*!*/
+/*}*/
+
+.card.reading-card {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 5px;
+  /*background-color: #fff3eb;*/
+}
+
+.col-white {
+  padding: 5px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #fafafa;
+  color: #000000;
+  font-weight: bold;
+  /*text-align: center;*/
+}
+
+.col-sepia {
+  padding: 5px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #fbf0d9;
+  color: #5f4b32;
+  font-weight: bold;
+  /*text-align: center;*/
+}
+
+.col-black {
+  padding: 5px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #000000;
+  color: #ffffff;
+  font-weight: bold;
+  /*text-align: center;*/
+}
+
+.s1 {
+  color: inherit !important;
+  font-size: 100% !important;
+}
+
+.bookmarked {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+}
+
+.bookmark-added {
+  padding-top: 20px !important;
+}
+
+.text-item{
+  font-size: small;
+}
+
+.chapter-item{
+  font-size: small;
+  padding: 8px;
+}
+.full-screen-icon{
+  position: absolute;
+  right: 0px;
+}

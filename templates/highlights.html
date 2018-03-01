@@ -1,0 +1,13 @@
+<ion-view view-title="Highlights">
+  <ion-content>
+    <div class="card" ng-repeat="hlight in highlights">
+      <div class="item item-divider item-icon-right">
+        <div>Location: {{hlight.position}}</div>
+        <i class="icon ion-ios-close-empty" ng-click="removeHighlight($index)"></i>
+      </div>
+      <div class="item text-item" ng-click="showHighlight($index)">
+        {{hlight.highlight}}
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

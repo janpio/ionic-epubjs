@@ -1,0 +1,30 @@
+<ion-modal-view>
+  <ion-header-bar class="bar bar-header">
+    <h1 class="title">About This Book</h1>
+    <button class="button button-clear button-dark" ng-click="closeModal('about')">OK</button>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <div class="item">
+        <h2>{{meta.bookTitle}}</h2>
+      </div>
+
+      <div class="item item-body">
+        <img class="full-image" src="img/cover.png">
+        <p><b>by</b> {{meta.creator}}</p>
+        <p>{{meta.pubdate}}</p>
+        <p><b>Publisher:</b> {{meta.publisher}}</p>
+        <p><b>Language:</b> {{meta.language}}</p>
+        <p><b>Last modification:</b> {{meta.modified_date}}</p>
+        <p>
+          {{meta.description}}
+        </p>
+        <p><b>Copyrights: </b>{{meta.rights}}</p>
+        <!--<p>-->
+        <!--<a href="#" class="subdued">1 Like</a>-->
+        <!--<a href="#" class="subdued">5 Comments</a>-->
+        <!--</p>-->
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>
