@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+<head>
+<meta name="dtb:uid" content="URN:ISBN:9781911529026"/>
+<meta name="dtb:depth" content="2"/>
+<meta name="dtb:totalPageCount" content="0"/>
+<meta name="dtb:maxPageNumber" content="0"/>
+</head>
+<docTitle>
+<text>Open: The Philosophy and Practices that are Revolutionizing Education and Science</text>
+</docTitle>
+<navMap>
+<navPoint id="navpoint-1" playOrder="1">
+<navLabel>
+<text>Cover</text>
+</navLabel>
+<content src="001.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-2" playOrder="2">
+<navLabel>
+<text>Title</text>
+</navLabel>
+<content src="002.xhtml#a1"/>
+</navPoint>
+<navPoint id="navpoint-3" playOrder="3">
+<navLabel>
+<text>Copyright</text>
+</navLabel>
+<content src="003.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-4" playOrder="4">
+<navLabel>
+<text>Table of Contents</text>
+</navLabel>
+<content src="004.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-5" playOrder="5">
+<navLabel>
+<text>Acknowledgements</text>
+</navLabel>
+<content src="005.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-6" playOrder="6">
+<navLabel>
+<text>Contributors</text>
+</navLabel>
+<content src="006.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-7" playOrder="7">
+<navLabel>
+<text>Introduction</text>
+</navLabel>
+<content src="007.xhtml"/>
+<navPoint id="navpoint-8" playOrder="8">
+<navLabel>
+<text>Introduction to Open (Robert Biswas-Diener and Rajiv S. Jhangiani)</text>
+</navLabel>
+<content src="008.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-9" playOrder="9">
+<navLabel>
+<text>A Brief History of Open Educational Resources (T. J. Bliss and M. Smith)</text>
+</navLabel>
+<content src="009.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-10" playOrder="10">
+<navLabel>
+<text>Open Licensing and Open Education Licensing Policy (Cable Green)</text>
+</navLabel>
+<content src="010.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-11" playOrder="11">
+<navLabel>
+<text>Openness and the Transformation of Education and Schooling (William G. Huitt and David M. Monetti)</text>
+</navLabel>
+<content src="011.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-12" playOrder="12">
+<navLabel>
+<text>What Can OER Do for Me? Evaluating the Claims for OER (Martin Weller, Beatriz de los Arcos, Rob Farrow, Rebecca Pitt and Patrick McAndrew)</text>
+</navLabel>
+<content src="012.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-13" playOrder="13">
+<navLabel>
+<text>Are OE Resources High Quality? (Regan A. R. Gurung)</text>
+</navLabel>
+<content src="013.xhtml"/>
+</navPoint>
+</navPoint>
+<navPoint id="navpoint-14" playOrder="14">
+<navLabel>
+<text>Open Practices</text>
+</navLabel>
+<content src="014.xhtml"/>
+<navPoint id="navpoint-15" playOrder="15">
+<navLabel>
+<text>Opening Science (Brian A. Nosek)</text>
+</navLabel>
+<content src="015.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-16" playOrder="16">
+<navLabel>
+<text>Open Course Development at the OERu (Wayne Mackintosh)</text>
+</navLabel>
+<content src="016.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-17" playOrder="17">
+<navLabel>
+<text>From OER to Open Pedagogy: Harnessing the Power of Open (Robin DeRosa and Scott Robison)</text>
+</navLabel>
+<content src="017.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-18" playOrder="18">
+<navLabel>
+<text>Opening Up Higher Education with Screencasts (David B. Miller and Addison Zhao)</text>
+</navLabel>
+<content src="018.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-19" playOrder="19">
+<navLabel>
+<text>Librarians in the Pursuit of Open Practices (Quill West)</text>
+</navLabel>
+<content src="019.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-20" playOrder="20">
+<navLabel>
+<text>A Library Viewpoint: Exploring Open Educational Practices (Anita Walz)</text>
+</navLabel>
+<content src="020.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-21" playOrder="21">
+<navLabel>
+<text>How to Open an Academic Department (Farhad Dastur)</text>
+</navLabel>
+<content src="021.xhtml"/>
+</navPoint>
+</navPoint>
+<navPoint id="navpoint-22" playOrder="22">
+<navLabel>
+<text>Case Studies</text>
+</navLabel>
+<content src="022.xhtml"/>
+<navPoint id="navpoint-23" playOrder="23">
+<navLabel>
+<text>The International Journal of Wellbeing: An Open Access Success Story (Dan Weijers and Aaron Jarden)</text>
+</navLabel>
+<content src="023.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-24" playOrder="24">
+<navLabel>
+<text>Iterating Toward Openness: Lessons Learned on a Personal Journey (David Wiley)</text>
+</navLabel>
+<content src="024.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-25" playOrder="25">
+<navLabel>
+<text>Open-Source for Educational Materials Making Textbooks Cheaper and Better (Ed Diener, Carol Diener and Robert Biswas-Diener)</text>
+</navLabel>
+<content src="025.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-26" playOrder="26">
+<navLabel>
+<text>Free is Not Enough (Richard Baraniuk, Nicole Finkbeiner, David Harris, Dani Nicholson and Daniel Williamson)</text>
+</navLabel>
+<content src="026.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-27" playOrder="27">
+<navLabel>
+<text>The BC Open Textbook Project (Mary Burgess)</text>
+</navLabel>
+<content src="027.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-28" playOrder="28">
+<navLabel>
+<text>TeachPsychScience.org: Sharing to Improve the Teaching of Research Methods (David B. Strohmetz, Natalie J. Ciarocco and Gary W. Lewandowski, Jr.)</text>
+</navLabel>
+<content src="028.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-29" playOrder="29">
+<navLabel>
+<text>DIY Open Pedagogy: Freely Sharing Teaching Resources in Psychology (Jessica Hartnett)</text>
+</navLabel>
+<content src="029.xhtml"/>
+</navPoint>
+</navPoint>
+<navPoint id="navpoint-30" playOrder="30">
+<navLabel>
+<text>Conclusion</text>
+</navLabel>
+<content src="030.xhtml"/>
+<navPoint id="navpoint-31" playOrder="31">
+<navLabel>
+<text>You Can&#x2019;t Sell Free, and Other OER Problems (Robert Biswas-Diener)</text>
+</navLabel>
+<content src="031.xhtml"/>
+</navPoint>
+<navPoint id="navpoint-32" playOrder="32">
+<navLabel>
+<text>Open as Default: The Future of Education and Scholarship (Rajiv S. Jhangiani)</text>
+</navLabel>
+<content src="032.xhtml"/>
+</navPoint>
+</navPoint>
+</navMap>
+</ncx>

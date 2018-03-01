@@ -1,0 +1,183 @@
+@font-face{font-family:"Minion Pro";font-style:normal;font-weight:normal;src:url(fonts/MinionPro-Regular.otf)}
+@font-face{font-family:"Minion Pro";font-style:italic;font-weight:normal;src:url(fonts/MinionPro-It.otf)}
+@font-face{font-family:"Minion Pro";font-style:normal;font-weight:bold;src:url(fonts/MinionPro-Bold.otf)}
+@font-face{font-family:"Minion Pro";font-style:italic;font-weight:bold;src:url(fonts/MinionPro-BoldIt.otf)}
+@font-face{font-family:"Minion Pro SmBd";font-style:normal;font-weight:bold;src:url(fonts/MinionPro-Semibold.otf)}
+@font-face{font-family:"Minion Pro SmBd";font-style:italic;font-weight:bold;src:url(fonts/MinionPro-SemiboldIt.otf)}
+@font-face{font-family:"Palatino LT Std";font-style:normal;font-weight:normal;src:url(fonts/PalatinoLTStd-Roman.otf)}
+@font-face{font-family:"Thonburi";font-style:normal;font-weight:normal;src:url(fonts/Thonburi.ttf)}
+
+body{margin:2%;-epub-hyphens:none;-webkit-hyphens:none;}
+p{text-indent:-0em;margin-left:0em;margin-right:0;text-align:justify;margin-top:0;margin-bottom:0;widows:2;orphans:2;font-family:"Minion Pro";font-size:91%}
+.p0{text-indent:0;margin-left:0;text-align:center}
+.p0a{text-indent:0;margin-left:0;text-align:center;margin-top:3em;}
+.p1{text-indent:0;margin-left:0;text-align:center;margin-top:5em;margin-bottom:0em}
+.p2{text-indent:0;margin-left:0;text-align:center;margin-bottom:0em}
+.p3{text-indent:0;margin-left:0;text-align:center;margin-top:20%;margin-bottom:1em}
+.p4{text-indent:0;margin-left:0;text-align:center;margin-top:1em}
+.p5{text-indent:0;margin-left:0;text-align:left}
+.p6{text-indent:0;margin-left:0;text-align:left;margin-top:.5em}
+.p7{text-indent:0;margin-left:0;text-align:left;margin-top:1.5em}
+.p8{text-indent:0;margin-left:0;text-align:left;margin-top:1em}
+.p9{text-indent:0;margin-left:0}
+.p9a{text-indent:0;margin-left:0;margin-top:1em}
+.p10{text-indent:0;margin-left:0;margin-top:5em}
+.p11{text-indent:.85em;margin-left:0}
+.p12{text-indent:0;margin-left:0;text-align:center;margin-top:1.5em;margin-bottom:1em}
+.p14{text-indent:0;margin-left:0;text-align:center;margin-top:2em;margin-bottom:1em}
+.p15{text-indent:0;margin-left:1.4em;margin-right:1.4em;margin-top:1em}
+.p16{text-indent:0em;margin-left:2.8em;margin-right:1.4em;margin-top:.5em}
+.p17{text-indent:0em;margin-left:2.8em;margin-right:1.4em}
+.p19{text-indent:0;margin-left:0;margin-top:1.2em}
+.p20{text-indent:0em;margin-left:2.8em;margin-top:1em}
+.p21{text-indent:0em;margin-left:2.8em}
+.p20a{text-indent:0em;margin-left:3.2em;margin-top:1em}
+.p21a{text-indent:0em;margin-left:3.2em}
+.p23{text-indent:0em;margin-left:1.85em;margin-top:1em}
+.p24{text-indent:0em;margin-left:1.85em}
+.p25{text-indent:0;margin-left:1.4em;margin-right:1.4em;margin-top:1em;margin-bottom:1em}
+.p29{text-indent:0;margin-left:0;text-align:center;margin-bottom:1em}
+.p32{text-indent:0;margin-left:1.4em;margin-right:1.4em;margin-top:1em;margin-bottom:1em}
+.p33{text-indent:0;margin-left:1.4em;margin-right:1.4em;margin-bottom:1em}
+.p34{text-indent:.85em;margin-left:1.4em;margin-right:1.4em}
+.p36{text-indent:0;margin-left:0;margin-right:3.5em;text-align:right}
+.p37{text-indent:0;margin-left:1.4em;margin-right:1.4em}
+.p38{text-indent:0;margin-left:0;margin-right:1.4em;text-align:right}
+.p39{text-indent:0em;margin-left:2.8em;margin-top:1em}
+.p40{text-indent:0em;margin-left:2.8em}
+.p42{text-indent:0;margin-left:0;margin-right:1.4em;text-align:right}
+.p43{text-indent:0em;margin-left:2.4em;margin-top:1em}
+.p44{text-indent:0em;margin-left:2.4em}
+.p45{text-indent:0;margin-left:0;margin-top:3em}
+.p47{text-indent:0;margin-left:0;text-align:left;margin-bottom:.5em}
+.p48{text-indent:-2.8em;margin-left:2.8em;text-align:left}
+.p49{text-indent:-2em;margin-left:2.8em;text-align:left}
+.p50{text-indent:0;margin-left:0;text-align:left;margin-top:.7em;margin-bottom:.5em}
+.p51{text-indent:0em;margin-left:0em;margin-top:3em;border-top:1px solid;text-align:left;padding-top:.3em;}
+.p52a{text-indent:-1.4em;margin-left:1.4em;text-align:left}
+.p52{text-indent:-1.4em;margin-left:1.4em;}
+.p52b{text-indent:0em;margin-left:2.4em;}
+.p52c{text-indent:0em;margin-left:1.9em;}
+.p26{text-indent:0;margin-left:0;text-align:center;margin-top:1.8em;margin-bottom:.8em}
+.p27{text-indent:0;margin-left:0;text-align:center;margin-top:0em;margin-bottom:1.8em}
+.p27a{text-indent:0;margin-left:0;text-align:center;margin-top:0em;margin-bottom:0em}
+.p31{text-indent:0;margin-left:.2em;text-align:left}
+.p31a{text-indent:0;margin-left:0em;text-align:center}
+h1{text-indent:0;margin-left:0;margin-right:0;text-align:center;margin-top:1em;margin-bottom:2em;font-family:"Minion Pro SmBd";font-size:218%;font-weight:bold}
+.h11a{text-indent:0;margin-bottom:.6em}
+.h12{text-indent:0;margin-bottom:5em}
+.h15{text-indent:0;margin-top:15%;margin-bottom:0em;}
+h2{text-indent:0;margin-left:0;margin-right:0;text-align:center;margin-top:1em;margin-bottom:2em;font-family:"Minion Pro SmBd";font-size:164%;font-weight:bold}
+.h21{text-indent:0;margin-bottom:.6em;}
+
+.t3{font-family:"Minion Pro SmBd";font-size:3em;font-weight:bold}
+.t4{font-family:"Minion Pro SmBd";font-size:2.9em;font-weight:bold}
+.t5{font-size:1.8em}
+.t5a{font-family:"Palatino LT Std";font-size:1.6em;}
+.t6{font-family:"Thonburi";font-size:.9em}
+.t8{font-style:italic}
+.t9{font-size:1.1em}
+.t10{font-family:"Minion Pro SmBd";font-size:1.2em;font-weight:bold}
+.t11{font-size:1.4em}
+.t12{font-size:.91em;vertical-align:super;}
+.t13{font-size:.72em;vertical-align:super;line-height:90%;}
+.t25{font-family:"Minion Pro";font-size:.65em;vertical-align:super;line-height:90%;}
+.t16{font-size:.72em;font-style:italic;vertical-align:super;line-height:90%;}
+.t19{font-family:"Minion Pro";font-size:.72em;font-weight:bold;vertical-align:super;line-height:90%;}
+.t13a{font-size:.72em;vertical-align:super;line-height:90%;float:left;margin-left:-1.6em;margin-top:3px;}
+.t13b{font-size:.72em;vertical-align:super;line-height:90%;float:left;margin-left:-1.1em;margin-top:3px;}
+.t14{font-family:"Minion Pro SmBd";font-size:1.1em;font-weight:bold}
+.t15{font-family:"Minion Pro SmBd";font-weight:bold;font-style:italic}
+.t18{font-weight:bold}
+.t22{font-family:"Minion Pro";font-size:.9em;font-weight:bold}
+.t23{font-family:"Minion Pro";font-size:.9em}
+.t24{font-style:italic;text-decoration:underline}
+.t26{font-family:"Minion Pro";font-size:.9em;font-style:italic}
+.t27{font-weight:bold;font-style:italic}
+.t28{font-family:"Minion Pro";font-size:1.1em;font-weight:bold}
+.th13{font-size:.75em}
+
+
+
+a{text-decoration:none;}
+ol{list-style:none;}
+.bull
+{
+float:left;
+margin-left:-1em;
+margin-top:0px;
+}
+.t8a{
+float:left;
+margin-left:-1.4em;
+margin-top:0px;
+font-style:italic;
+}
+.t8b{
+float:left;
+margin-left:-1.4em;
+margin-top:0px;
+}
+.t8bb{
+float:left;
+margin-left:-1.6em;
+margin-top:0px;
+}
+.t9a{
+float:left;
+margin-left:-2.4em;
+margin-top:0px;
+}
+.t8c{
+float:left;
+margin-left:-1.8em;
+margin-top:0px;
+}
+
+.boximage{width:75%;max-width:100%; margin-right:auto; margin-left:auto; text-align:center; page-break-inside:avoid;page-break-before:auto;}
+.table1 {
+    border:0;
+    border-spacing: 2px;
+    display: table;
+    max-width: 100%;
+    text-indent: 0;
+    width: 100%;
+    margin: 0em;
+    }
+.table2 {
+    display: table-row;
+    text-align: left;
+    vertical-align: middle;
+    }
+.table3 {
+    display: table-cell;
+    text-align: left;
+    vertical-align: top;
+    width: 70%;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-right: 1px;
+    padding-left: 3em;
+    }
+.table4 {
+    display: table-cell;
+    text-align: left;
+    vertical-align: top;
+    width: 30%;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-right: 3em;
+    padding-left: 1px;
+    }
+
+
+.table5 {
+text-align: left;
+width:100%;
+border: 1px solid;
+padding:0em;
+margin-top:1.8em;
+margin-bottom:.8em;
+line-height:110%;
+border-spacing:0px;
+}
