@@ -1,0 +1,42 @@
+{
+  "name": "epub.js",
+  "version": "0.2.18",
+  "homepage": "https://github.com/futurepress/epub.js",
+  "authors": [
+    "Fred Chasen <fchasen@gmail.com>"
+  ],
+  "description": "JavaScript library for rendering ePub documents in the browser, across many devices.",
+  "main": "build/epub.js",
+  "keywords": [
+    "epub"
+  ],
+  "license": "FreeBSD",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src",
+    "reader_src",
+    "examples",
+    "index.html",
+    "libs"
+  ],
+  "dependencies": {
+    "rsvp": "~3.0.8",
+    "underscore": "~1.8.3",
+    "polymer": "Polymer/polymer#^1.0.0",
+    "backbone": "~1.2.3",
+    "jquery-highlight": "~3.3.0"
+  },
+  "_release": "0.2.18",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.2.18",
+    "commit": "53a53d8eedbb9f8df92aa72e95fa13a1558e3482"
+  },
+  "_source": "https://github.com/futurepress/epub.js.git",
+  "_target": "0.2.18",
+  "_originalSource": "epub.js"
+}

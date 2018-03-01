@@ -1,0 +1,44 @@
+<ion-view view-title="{{title}}">
+  <ion-nav-buttons side="right">
+
+    <a
+      class="button button-icon button-clear ion-bookmark buttonNavIcon {{loc.isBookmarked?'bookmark-added':''}}"
+      ng-click="bookmarking()"></a>
+    <button class="button button-icon button-clear" ng-click="format()">
+      <p>Aa</p>
+    </button>
+
+    <a ng-show="currentHighlights.length > 0 && currentHighlights[0]!=''"
+       class="button button-icon button-clear ion-edit buttonNavIcon"
+       ng-click="highlight()"></a>
+
+    <!--<a class="button button-icon button-clear ion-chevron-right buttonNavIcon"-->
+    <!--ng-click="nextPage()"></a>-->
+    <!--<a ngsf-toggle-fullscreen>-->
+    <!--<i class="icon ion-arrow-expand"></i>-->
+    <!--&lt;!&ndash;<i show-if-fullscreen="true" class="icon ion-arrow-shrink"></i>&ndash;&gt;-->
+    <!--</a>-->
+  </ion-nav-buttons>
+
+  <ion-content>
+
+    <div id="full" class="card reading-card"
+         style="background-color: {{bookFormat.colorMode.background}}"
+         on-swipe-right="prevPage()" on-swipe-left="nextPage()">
+      <div id="area">
+
+      </div>
+      <div ng-click="showHidePercentage()" class="bar bar-footer"
+           style="height: 16px;background-color: {{bookFormat.colorMode.background}};margin: 5px;padding: 0px;width: 95%">
+        <p ng-show="showPercentage"
+           style="margin-left: 5px;font-family: serif;font-size: 1em;color:{{bookFormat.colorMode.color}}">
+          {{percentage?(percentage*100).toFixed(0):'calculating...'}}%</p>
+        <a ng-click="requestScreenFull()" class="full-screen-icon" style="color:{{bookFormat.colorMode.color}} ">
+          <i ng-hide="isScreenFull()" class="icon ion-arrow-expand"></i>
+          <i ng-show="isScreenFull()" class="icon ion-arrow-shrink"></i>
+        </a>
+
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

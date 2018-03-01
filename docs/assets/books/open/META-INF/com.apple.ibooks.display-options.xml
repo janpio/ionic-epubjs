@@ -1,8 +1,0 @@
-
-		<display_options>
-			<!-- allowed values for platform "iphone", "ipad", "*" -->
-			<platform name="*">
-				<option name="specified-fonts">true</option>
-			</platform>
-		</display_options>
-	

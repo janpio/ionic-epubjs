@@ -1,0 +1,13 @@
+<ion-view view-title="Bookmarks">
+  <ion-content>
+    <div class="card" ng-repeat="bookmark in bookmarks">
+      <div class="item item-divider item-icon-right">
+        <div>Location: {{bookmark.position}}</div>
+        <i class="icon ion-ios-close-empty" ng-click="removeBookmark(bookmark.cfiLocation)"></i>
+      </div>
+      <div class="item text-item" ng-click="gotoCfi(Book,bookmark.cfiLocation)">
+        {{bookmark.excerpt}}
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
