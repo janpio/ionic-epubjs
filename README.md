@@ -49,3 +49,7 @@ As just natively importing Epub.js after installing it via `npm` unfortunately d
   * Examples
     * [http://futurepress.github.io/epub.js/](http://futurepress.github.io/epub.js/)
     * [https://github.com/futurepress/epub.js/tree/master/examples](https://github.com/futurepress/epub.js/tree/master/examples)
+
+## Related projects
+
+* There is a [Ionic v1 based "Ionic Reader"](https://github.com/Nipun04/Ionic-Reader) that also uses Epub.js. It claims to "fix iOS flickering" and also has additional features "Last location, Go to location, Bookmarks, Highlights"
