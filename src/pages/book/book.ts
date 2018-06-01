@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, Platform, PopoverController, Events, NavParams } from 'ionic-angular';
 import { TocPage } from '../toc/toc';
 import { SettingsPage } from '../settings/settings';
+import { Book, Rendition } from "epubjs";
 
-declare var ePub: any;
+// declare var ePub: any;
 
 @Component({
   selector: 'page-book',
@@ -12,9 +13,13 @@ declare var ePub: any;
 export class BookPage {
 
   book: any;
-  currentPage: number = 1;
+  rendition: any;
+  currentPage: string;
   totalPages: any; // TODO should be number
   pageTitle: string;
+  metadata: any;
+  navigation: any;
+  currentPageText: string;
 
   showToolbars: boolean = true;
   bgColor: any;
@@ -27,24 +32,63 @@ export class BookPage {
     public events: Events,
     public navParams: NavParams,
   ) {
-    let book = this.navParams.get('book');
 
     this.platform.ready().then(() => {
       // load book
-      this.book = ePub(book.file);
+      let book = this.navParams.get('book');
+      this.book = new Book(book.file);
+      this.rendition = new Rendition(this.book);
+      //Attached the rendition to the book Id element in our html
+      this.rendition.attachTo('book');
+      //Display the book. can pass optional cfi, href, int spine item
+      this.rendition.display();
 
-      this._updateTotalPages();
+      //Creates a CFI for every X characters in the book
+      this.book.locations.generate(); //can pass an optional X characters count
 
-      // load toc and then update pagetitle
-      this.book.getToc().then(toc => {
-        this._updatePageTitle();
+      //Output all the objects we can work with
+      this.book.loaded.metadata.then((metadata) => {
+        console.log("METADATA: ", metadata);
+        this.metadata = metadata;
+      });
+      this.book.loaded.navigation.then((navigation) => {
+        console.log("NAVIGATION: ", navigation);
+        this.navigation = navigation;
       });
 
-      // if page changes
-      this.book.on('book:pageChanged', (location) => {
-        console.log('on book:pageChanged', location);
-        this._updateCurrentPage();
-        this._updatePageTitle();
+      this.book.loaded.spine.then((spine) => { console.log("SPINE: ", spine) });
+      this.book.loaded.cover.then((cover) => { console.log("COVER: ", cover) });
+      this.book.loaded.resources.then((resources) => { console.log("RESOURCES: ", resources) });
+
+
+      this.rendition.on('relocated', (relocated) => {
+        console.log("on Relocated called: ", relocated)
+        let location = this.rendition.currentLocation();
+        let cfi = relocated.start.cfi;
+
+        //Example fetching current spine location
+        let item = this.book.spine.get(this.rendition.location.start.cfi);
+        console.log("ITEM: ", item)
+
+        //Example fetching current navigation item
+        let navItem = this.book.navigation.get(item.href);
+        console.log("NAV ITEM: ", navItem)
+
+        if (navItem && navItem.label !== 'Cover') {
+          this.pageTitle = navItem.label;
+        } else {
+          this.pageTitle = this.metadata.title;
+        }
+
+        //Example grabbing the current page's first block of text
+        let range = this.rendition.getRange(cfi);
+        console.log('RANGE: ', range);
+        this.currentPageText = range.startContainer.textContent.substr(range.startOffset);
+
+        //Currently not finding a good way to display current page of Total pages since the whole book
+        //is no longer rendered but instead only the current section (chapter). So instead can easily display chapter and page
+        //number within the chapter.
+        this.currentPage = item.idref + "." + relocated.start.displayed.page;
       });
 
       // subscribe to events coming from other pages
@@ -52,19 +96,12 @@ export class BookPage {
     });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad BookPage');
-
-    // render book
-    this.book.renderTo("book"); // TODO We should work with ready somehow here I think
-  }
-
   _subscribeToEvents() {
     console.log('subscribe to events');
 
     // toc: go to selected chapter
     this.events.subscribe('select:toc', (content) => {
-      this.book.goto(content.href);
+        this.rendition.display(content.href);
     });
 
     // settings: change background color
@@ -112,18 +149,9 @@ export class BookPage {
     this.currentPage = page;
   }
 
+  //TODO right now no easy way to update total pages in v0.3+
   _updateTotalPages() {
     console.log('_updateTotalPages');
-    //TODO: cancel prior pagination promise
-    // TODO Triggers "download" of ALL pages for unpacked books. Really needed? Alternative?
-    // Source: https://github.com/futurepress/epub.js/wiki/Tips-and-Tricks#generating-and-getting-page-numbers
-    this.book.generatePagination().then(() => {
-      let totalPages = this.book.pagination.totalPages;
-      console.log('_updateTotalPages totalPages = ', totalPages);
-      this.totalPages = `of ${totalPages}`; // TODO where is this.totalPages actually used?
-    }).catch(error => {
-      console.log('_updateTotalPages error = ', error);
-    });
   }
 
   _updatePageTitle() {
@@ -143,22 +171,19 @@ export class BookPage {
 
   prev() {
     console.log('prev');
-    if (this.currentPage == 2) { // TODO Why this special case here?
-      this.book.gotoPage(1);
-    } else {
-      this.book.prevPage();
-    }
+    this.rendition.prev();
   }
 
   next() {
     console.log('next');
-    this.book.nextPage();
+    this.rendition.next();
   }
 
   toc(ev) {
     console.log('toc');
     let popover = this.popoverCtrl.create(TocPage, {
-      toc: this.book.toc
+      toc: this.navigation.toc,
+      currentToc: this.pageTitle
     });
     popover.present({ ev });
   }

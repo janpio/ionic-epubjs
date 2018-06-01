@@ -6,7 +6,7 @@
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>{{pageTitle}}</ion-title>
+    <ion-title>{{ pageTitle }}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (tap)="settings($event)">
         <ion-icon name="settings"></ion-icon>
@@ -27,7 +27,7 @@
         <ion-icon name="arrow-dropleft-circle"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Page {{currentPage}} {{(book && book.pagination && book.pagination.totalPages) ? ' of ' + book.pagination.totalPages : ''}}</ion-title>
+    <ion-title>{{ currentPage }}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (tap)="next()">
         <ion-icon name="arrow-dropright-circle"></ion-icon>
