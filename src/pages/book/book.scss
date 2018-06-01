@@ -1,7 +1,7 @@
 page-book {
     #touchlayer, #book {
-    width: 100%;
-    height: 100%;
+      width: 100%;
+      height: 100%;
     }
 
     #touchlayer{
@@ -11,6 +11,11 @@ page-book {
 
     #book {
         z-index: 0;
+
+        div {
+          margin: 0 auto;
+          height: 98%;
+        }
     }
 
     #book iframe {
@@ -19,6 +24,25 @@ page-book {
 
     .scroll-content {
         overflow-y: hidden;
+    }
+
+    ion-footer, ion-header {
+        &.light, &.tan  {
+            button {
+                color: #000 !important;
+            }
+            ion-title .toolbar-title {
+                color: #000 !important;
+            }
+        }
+        &.dark, &.grey  {
+            button {
+                color: #fff !important;
+            }
+            ion-title .toolbar-title {
+                color: #fff !important;
+            }
+        }
     }
 
 }

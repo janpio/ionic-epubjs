@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header [ngClass]="selectedTheme">
 
   <ion-navbar transparent [color]="toolbarColor" [hidden]="!showToolbars">
     <ion-buttons start>
@@ -20,7 +20,7 @@
   <div id="book"></div>
 </ion-content>
 
-<ion-footer>
+<ion-footer [class]="selectedTheme">
   <ion-toolbar transparent [color]="toolbarColor" *ngIf="showToolbars">
     <ion-buttons start>
       <button ion-button icon-only (tap)="prev()">

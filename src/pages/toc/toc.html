@@ -1,5 +1,5 @@
 <ion-list>
-  <ion-item class="toc" *ngFor="let chapter of toc" (tap)="selectToc(chapter)">
+  <ion-item class="toc" *ngFor="let chapter of toc" (tap)="selectToc(chapter)" [ngClass]="{'selected' : currentSection === chapter.label}">
     {{chapter.label}}
   </ion-item>
 </ion-list>

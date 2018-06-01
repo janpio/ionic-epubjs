@@ -3,7 +3,7 @@ import { NavController, Platform, PopoverController, Events, NavParams } from 'i
 import { TocPage } from '../toc/toc';
 import { SettingsPage } from '../settings/settings';
 import { Book, Rendition } from "epubjs";
-
+import { themes } from "./themes";
 // declare var ePub: any;
 
 @Component({
@@ -22,6 +22,7 @@ export class BookPage {
   currentPageText: string;
 
   showToolbars: boolean = true;
+  selectedTheme: string;
   bgColor: any;
   toolbarColor: string = 'light';
 
@@ -46,6 +47,9 @@ export class BookPage {
       //Creates a CFI for every X characters in the book
       this.book.locations.generate(); //can pass an optional X characters count
 
+      //Register themes
+      this._registerThemes();
+
       //Output all the objects we can work with
       this.book.loaded.metadata.then((metadata) => {
         console.log("METADATA: ", metadata);
@@ -60,7 +64,6 @@ export class BookPage {
       this.book.loaded.cover.then((cover) => { console.log("COVER: ", cover) });
       this.book.loaded.resources.then((resources) => { console.log("RESOURCES: ", resources) });
 
-
       this.rendition.on('relocated', (relocated) => {
         console.log("on Relocated called: ", relocated)
         let location = this.rendition.currentLocation();
@@ -74,18 +77,14 @@ export class BookPage {
         let navItem = this.book.navigation.get(item.href);
         console.log("NAV ITEM: ", navItem)
 
-        if (navItem && navItem.label !== 'Cover') {
-          this.pageTitle = navItem.label;
-        } else {
-          this.pageTitle = this.metadata.title;
-        }
+        this._updatePageTitle(navItem);
 
         //Example grabbing the current page's first block of text
-        let range = this.rendition.getRange(cfi);
-        console.log('RANGE: ', range);
-        this.currentPageText = range.startContainer.textContent.substr(range.startOffset);
+        // let range = this.rendition.getRange(cfi);
+        // console.log('RANGE: ', range);
+        // this.currentPageText = range.startContainer.textContent.substr(range.startOffset);
 
-        //Currently not finding a good way to display current page of Total pages since the whole book
+        //TODO Currently not finding a good way to display current page of Total pages since the whole book
         //is no longer rendered but instead only the current section (chapter). So instead can easily display chapter and page
         //number within the chapter.
         this.currentPage = item.idref + "." + relocated.start.displayed.page;
@@ -96,57 +95,48 @@ export class BookPage {
     });
   }
 
+  _registerThemes() {
+
+    this.rendition.themes.register("dark", themes['dark']);
+    this.rendition.themes.register("grey", themes['grey']);
+    this.rendition.themes.register("tan", themes['tan']);
+    this.rendition.themes.register("light", themes['light']);
+
+    //Set default theme
+    this.bgColor = themes['light'].body.background;
+    this.rendition.themes.select("light");
+    this.selectedTheme = 'light'; //default
+  }
+
   _subscribeToEvents() {
     console.log('subscribe to events');
 
     // toc: go to selected chapter
     this.events.subscribe('select:toc', (content) => {
+      if(content)
         this.rendition.display(content.href);
     });
 
     // settings: change background color
-    this.events.subscribe('select:background-color', (bgColor) => {
-      console.log('select:background-color', bgColor);
-      this.book.setStyle("background-color", bgColor);
-      this.bgColor = bgColor;
-      // adapt toolbar color to background color
-      if (bgColor == 'rgb(255, 255, 255)' || bgColor == 'rgb(249, 241, 228)') { // TODO don't hardcode color values, use some metadata
-        this.toolbarColor = 'light';
-      }
-      else {
-        this.toolbarColor = 'dark';
-      }
-    });
-
-    // settings: change color
-    this.events.subscribe('select:color', (color) => {
-      console.log('select:color', color);
-      this.book.setStyle("color", color);
+    this.events.subscribe('select:theme', (theme) => {
+      console.log('select:theme', theme);
+      this.selectedTheme = theme;
+      this.bgColor = themes[theme].body.background;
+      this.rendition.themes.select(theme);
     });
 
     // settings: change font
     this.events.subscribe('select:font-family', (family) => {
       console.log('select:font-family', family);
-      this.book.setStyle("font-family", family);
-      this._updateTotalPages();
+      this.rendition.themes.font(family);
     });
 
     // settings: change font size
     this.events.subscribe('select:font-size', (size) => {
       console.log('select:font-size', size);
-      this.book.setStyle("font-size", size);
-      this._updateTotalPages();
+      this.rendition.themes.fontSize(size);
     });
 
-  }
-
-  _updateCurrentPage() {
-    console.log('_updateCurrentPage');
-    // Source: https://github.com/futurepress/epub.js/wiki/Tips-and-Tricks#generating-and-getting-page-numbers (bottom)
-    let currentLocation = this.book.getCurrentLocationCfi();
-    let page = this.book.pagination.pageFromCfi(currentLocation)
-    console.log('_updateCurrentPage location =', currentLocation, 'page =', page);
-    this.currentPage = page;
   }
 
   //TODO right now no easy way to update total pages in v0.3+
@@ -154,21 +144,12 @@ export class BookPage {
     console.log('_updateTotalPages');
   }
 
-  _updatePageTitle() {
-    console.log('_updatePageTitle');
-    let bookTitle = this.book.metadata.bookTitle;
-    let pageTitle = bookTitle; // default to book title
-    if (this.book.toc) {
-      // Use chapter name
-      let chapter = this.book.toc.filter(obj => obj.href == this.book.currentChapter.href)[0]; // TODO What does this code do?
-      pageTitle = chapter ? chapter.label : bookTitle; // fallback to book title again
-    }
-    console.log('_updatePageTitle title =', pageTitle);
-    this.pageTitle = pageTitle;
+  _updatePageTitle(navItem) {
+    this.pageTitle = (navItem && navItem.label !== 'Cover') ? navItem.label : this.metadata.title;
   }
 
-  // Navigation
 
+  // Navigation
   prev() {
     console.log('prev');
     this.rendition.prev();
@@ -183,7 +164,7 @@ export class BookPage {
     console.log('toc');
     let popover = this.popoverCtrl.create(TocPage, {
       toc: this.navigation.toc,
-      currentToc: this.pageTitle
+      currentSection: this.pageTitle //pageTitle is also the name of the current section in TOC.
     });
     popover.present({ ev });
   }
@@ -191,9 +172,7 @@ export class BookPage {
   settings(ev) {
     console.log('settings');
     let popover = this.popoverCtrl.create(SettingsPage, {
-      backgroundColor: this.book.settings.styles['background-color'], // TODO: Color is not needed here?
-      fontFamily: this.book.settings.styles['font-family'],
-      fontSize: this.book.settings.styles['font-size'],
+      //TODO Pass stored settings here for fontFamily, fontSize, and theme
     });
     popover.present({ ev });
   }
