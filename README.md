@@ -1,6 +1,6 @@
 # ionic-epubjs
 
-Sample project of how to use [Epub.js](https://github.com/futurepress/epub.js) in an Ionic app. 
+Sample project of how to use [Epub.js](https://github.com/futurepress/epub.js) in an Ionic 3 app. 
 
 ## How Epub.js is integrated
 
