@@ -6,9 +6,12 @@ import { NavController, NavParams, Events } from 'ionic-angular';
   templateUrl: 'toc.html',
 })
 export class TocPage {
-  private toc: any;
+  toc: any;
+  currentSection: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public events : Events) {
     this.toc = navParams.data.toc;
+    this.currentSection = navParams.data.currentSection;
   }
 
   selectToc(content){

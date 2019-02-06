@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, Platform, PopoverController, Events, NavParams } from 'ionic-angular';
 import { TocPage } from '../toc/toc';
 import { SettingsPage } from '../settings/settings';
-
-declare var ePub: any;
+import { Book, Rendition } from "epubjs";
+import { themes } from "./themes";
+// declare var ePub: any;
 
 @Component({
   selector: 'page-book',
@@ -12,11 +13,16 @@ declare var ePub: any;
 export class BookPage {
 
   book: any;
-  currentPage: number = 1;
+  rendition: any;
+  currentPage: string;
   totalPages: any; // TODO should be number
   pageTitle: string;
+  metadata: any;
+  navigation: any;
+  currentPageText: string;
 
   showToolbars: boolean = true;
+  selectedTheme: string;
   bgColor: any;
   toolbarColor: string = 'light';
 
@@ -27,24 +33,61 @@ export class BookPage {
     public events: Events,
     public navParams: NavParams,
   ) {
-    let book = this.navParams.get('book');
 
     this.platform.ready().then(() => {
       // load book
-      this.book = ePub(book.file);
+      let book = this.navParams.get('book');
+      this.book = new Book(book.file);
+      this.rendition = new Rendition(this.book);
+      //Attached the rendition to the book Id element in our html
+      this.rendition.attachTo('book');
+      //Display the book. can pass optional cfi, href, int spine item
+      this.rendition.display();
 
-      this._updateTotalPages();
+      //Creates a CFI for every X characters in the book
+      this.book.locations.generate(); //can pass an optional X characters count
 
-      // load toc and then update pagetitle
-      this.book.getToc().then(toc => {
-        this._updatePageTitle();
+      //Register themes
+      this._registerThemes();
+
+      //Output all the objects we can work with
+      this.book.loaded.metadata.then((metadata) => {
+        console.log("METADATA: ", metadata);
+        this.metadata = metadata;
+      });
+      this.book.loaded.navigation.then((navigation) => {
+        console.log("NAVIGATION: ", navigation);
+        this.navigation = navigation;
       });
 
-      // if page changes
-      this.book.on('book:pageChanged', (location) => {
-        console.log('on book:pageChanged', location);
-        this._updateCurrentPage();
-        this._updatePageTitle();
+      this.book.loaded.spine.then((spine) => { console.log("SPINE: ", spine) });
+      this.book.loaded.cover.then((cover) => { console.log("COVER: ", cover) });
+      this.book.loaded.resources.then((resources) => { console.log("RESOURCES: ", resources) });
+
+      this.rendition.on('relocated', (relocated) => {
+        console.log("on Relocated called: ", relocated)
+        let location = this.rendition.currentLocation();
+        let cfi = relocated.start.cfi;
+
+        //Example fetching current spine location
+        let item = this.book.spine.get(this.rendition.location.start.cfi);
+        console.log("ITEM: ", item)
+
+        //Example fetching current navigation item
+        let navItem = this.book.navigation.get(item.href);
+        console.log("NAV ITEM: ", navItem)
+
+        this._updatePageTitle(navItem);
+
+        //Example grabbing the current page's first block of text
+        // let range = this.rendition.getRange(cfi);
+        // console.log('RANGE: ', range);
+        // this.currentPageText = range.startContainer.textContent.substr(range.startOffset);
+
+        //TODO Currently not finding a good way to display current page of Total pages since the whole book
+        //is no longer rendered but instead only the current section (chapter). So instead can easily display chapter and page
+        //number within the chapter.
+        this.currentPage = item.idref + "." + relocated.start.displayed.page;
       });
 
       // subscribe to events coming from other pages
@@ -52,11 +95,17 @@ export class BookPage {
     });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad BookPage');
+  _registerThemes() {
 
-    // render book
-    this.book.renderTo("book"); // TODO We should work with ready somehow here I think
+    this.rendition.themes.register("dark", themes['dark']);
+    this.rendition.themes.register("grey", themes['grey']);
+    this.rendition.themes.register("tan", themes['tan']);
+    this.rendition.themes.register("light", themes['light']);
+
+    //Set default theme
+    this.bgColor = themes['light'].body.background;
+    this.rendition.themes.select("light");
+    this.selectedTheme = 'light'; //default
   }
 
   _subscribeToEvents() {
@@ -64,101 +113,58 @@ export class BookPage {
 
     // toc: go to selected chapter
     this.events.subscribe('select:toc', (content) => {
-      this.book.goto(content.href);
+      if(content)
+        this.rendition.display(content.href);
     });
 
     // settings: change background color
-    this.events.subscribe('select:background-color', (bgColor) => {
-      console.log('select:background-color', bgColor);
-      this.book.setStyle("background-color", bgColor);
-      this.bgColor = bgColor;
-      // adapt toolbar color to background color
-      if (bgColor == 'rgb(255, 255, 255)' || bgColor == 'rgb(249, 241, 228)') { // TODO don't hardcode color values, use some metadata
-        this.toolbarColor = 'light';
-      }
-      else {
-        this.toolbarColor = 'dark';
-      }
-    });
-
-    // settings: change color
-    this.events.subscribe('select:color', (color) => {
-      console.log('select:color', color);
-      this.book.setStyle("color", color);
+    this.events.subscribe('select:theme', (theme) => {
+      console.log('select:theme', theme);
+      this.selectedTheme = theme;
+      this.bgColor = themes[theme].body.background;
+      this.rendition.themes.select(theme);
     });
 
     // settings: change font
     this.events.subscribe('select:font-family', (family) => {
       console.log('select:font-family', family);
-      this.book.setStyle("font-family", family);
-      this._updateTotalPages();
+      this.rendition.themes.font(family);
     });
 
     // settings: change font size
     this.events.subscribe('select:font-size', (size) => {
       console.log('select:font-size', size);
-      this.book.setStyle("font-size", size);
-      this._updateTotalPages();
+      this.rendition.themes.fontSize(size);
     });
 
   }
 
-  _updateCurrentPage() {
-    console.log('_updateCurrentPage');
-    // Source: https://github.com/futurepress/epub.js/wiki/Tips-and-Tricks#generating-and-getting-page-numbers (bottom)
-    let currentLocation = this.book.getCurrentLocationCfi();
-    let page = this.book.pagination.pageFromCfi(currentLocation)
-    console.log('_updateCurrentPage location =', currentLocation, 'page =', page);
-    this.currentPage = page;
-  }
-
+  //TODO right now no easy way to update total pages in v0.3+
   _updateTotalPages() {
     console.log('_updateTotalPages');
-    //TODO: cancel prior pagination promise
-    // TODO Triggers "download" of ALL pages for unpacked books. Really needed? Alternative?
-    // Source: https://github.com/futurepress/epub.js/wiki/Tips-and-Tricks#generating-and-getting-page-numbers
-    this.book.generatePagination().then(() => {
-      let totalPages = this.book.pagination.totalPages;
-      console.log('_updateTotalPages totalPages = ', totalPages);
-      this.totalPages = `of ${totalPages}`; // TODO where is this.totalPages actually used?
-    }).catch(error => {
-      console.log('_updateTotalPages error = ', error);
-    });
   }
 
-  _updatePageTitle() {
-    console.log('_updatePageTitle');
-    let bookTitle = this.book.metadata.bookTitle;
-    let pageTitle = bookTitle; // default to book title
-    if (this.book.toc) {
-      // Use chapter name
-      let chapter = this.book.toc.filter(obj => obj.href == this.book.currentChapter.href)[0]; // TODO What does this code do?
-      pageTitle = chapter ? chapter.label : bookTitle; // fallback to book title again
-    }
-    console.log('_updatePageTitle title =', pageTitle);
-    this.pageTitle = pageTitle;
+  _updatePageTitle(navItem) {
+    this.pageTitle = (navItem && navItem.label !== 'Cover') ? navItem.label : this.metadata.title;
   }
+
 
   // Navigation
-
   prev() {
     console.log('prev');
-    if (this.currentPage == 2) { // TODO Why this special case here?
-      this.book.gotoPage(1);
-    } else {
-      this.book.prevPage();
-    }
+    this.rendition.prev();
   }
 
   next() {
     console.log('next');
-    this.book.nextPage();
+    this.rendition.next();
   }
 
   toc(ev) {
     console.log('toc');
     let popover = this.popoverCtrl.create(TocPage, {
-      toc: this.book.toc
+      toc: this.navigation.toc,
+      currentSection: this.pageTitle //pageTitle is also the name of the current section in TOC.
     });
     popover.present({ ev });
   }
@@ -166,9 +172,7 @@ export class BookPage {
   settings(ev) {
     console.log('settings');
     let popover = this.popoverCtrl.create(SettingsPage, {
-      backgroundColor: this.book.settings.styles['background-color'], // TODO: Color is not needed here?
-      fontFamily: this.book.settings.styles['font-family'],
-      fontSize: this.book.settings.styles['font-size'],
+      //TODO Pass stored settings here for fontFamily, fontSize, and theme
     });
     popover.present({ ev });
   }

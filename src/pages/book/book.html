@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header [ngClass]="selectedTheme">
 
   <ion-navbar transparent [color]="toolbarColor" [hidden]="!showToolbars">
     <ion-buttons start>
@@ -6,7 +6,7 @@
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>{{pageTitle}}</ion-title>
+    <ion-title>{{ pageTitle }}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (tap)="settings($event)">
         <ion-icon name="settings"></ion-icon>
@@ -20,14 +20,14 @@
   <div id="book"></div>
 </ion-content>
 
-<ion-footer>
+<ion-footer [class]="selectedTheme">
   <ion-toolbar transparent [color]="toolbarColor" *ngIf="showToolbars">
     <ion-buttons start>
       <button ion-button icon-only (tap)="prev()">
         <ion-icon name="arrow-dropleft-circle"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Page {{currentPage}} {{(book && book.pagination && book.pagination.totalPages) ? ' of ' + book.pagination.totalPages : ''}}</ion-title>
+    <ion-title>{{ currentPage }}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (tap)="next()">
         <ion-icon name="arrow-dropright-circle"></ion-icon>
